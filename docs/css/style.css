@@ -54,12 +54,23 @@ h1 {
 .btn {
   font-family: "Source Sans 3", system-ui, sans-serif;
   text-decoration: none;
-  color: var(--paper);
-  background: var(--ink);
+  color: var(--ink);
+  background: var(--paper);
   padding: 0.45rem 0.85rem;
   border-radius: 999px;
   font-size: 0.88rem;
   border: 1px solid var(--ink);
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+.btn:active {
+  background: #3a342e;
+  color: var(--paper);
 }
 .btn.ghost { background: transparent; color: var(--ink); }
 section { padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--line); }
@@ -80,9 +91,17 @@ video {
   overflow: hidden;
   position: relative;
   box-shadow: var(--shadow);
-  min-height: 420px;
+  width: 100%;
+  height: min(70vh, 620px);
 }
-#view { width: 100%; height: min(72vh, 640px); display: block; touch-action: none; }
+.viewer-wrap canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -104,12 +123,14 @@ select, .toolbar button {
 .split {
   position: absolute;
   top: 0; bottom: 0;
-  width: 3px;
+  width: 4px;
   background: #fff;
   cursor: ew-resize;
-  z-index: 3;
-  transform: translateX(-1px);
+  z-index: 5;
+  transform: translateX(-50%);
+  touch-action: none;
 }
+.split[hidden], .badge-l[hidden], .badge-r[hidden] { display: none !important; }
 .split::after {
   content: "";
   position: absolute;
@@ -164,6 +185,6 @@ pre {
 footer { padding: 2rem 1.25rem 3rem; color: var(--muted); font-size: 0.88rem; }
 .qr { width: 140px; background: #fff; padding: 8px; border-radius: 8px; }
 @media (max-width: 700px) {
-  #view { height: 62vh; }
+  .viewer-wrap { height: 62vh; }
   .btns .btn { font-size: 0.82rem; }
 }

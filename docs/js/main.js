@@ -1,4 +1,4 @@
-import { init } from "./viewer.js";
+import { initCompare, initEndomapper } from "./viewer.js";
 
 document.getElementById("copy-bib").addEventListener("click", async () => {
   const t = document.getElementById("bibtex").innerText;
@@ -10,4 +10,5 @@ document.getElementById("copy-bib").addEventListener("click", async () => {
   }
 });
 
-init();
+initCompare();
+initEndomapper();

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "endomapper_seq_0",
+    "label": "EndoMapper \u00b7 Seq 0",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_0.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/endomapper_seq_0_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.9301716156255107,
+          -0.5379510708173435,
+          -0.9977211956339539
+        ],
+        "max": [
+          0.9274320987621689,
+          0.5365142187603732,
+          0.9889504772832571
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/endomapper_seq_0_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.5437884144595705,
+          -0.5379510708173435,
+          -0.9969851481674388
+        ],
+        "max": [
+          0.9274320987621689,
+          0.5365142187603732,
+          0.9884791038159533
+        ]
+      }
+    }
+  },
+  {
+    "id": "endomapper_seq_1",
+    "label": "EndoMapper \u00b7 Seq 1",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_1.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/endomapper_seq_1_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.8321204348092921,
+          -0.5201171963160597,
+          -1.0
+        ],
+        "max": [
+          0.823370230006989,
+          0.5058754066709891,
+          0.9575856404175825
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/endomapper_seq_1_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.7938701775416063,
+          -0.49968243476984664,
+          -0.9967761243540854
+        ],
+        "max": [
+          0.823370230006989,
+          0.493070657997434,
+          0.9575856404175825
+        ]
+      }
+    }
+  },
+  {
+    "id": "endomapper_seq_2",
+    "label": "EndoMapper \u00b7 Seq 2",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_2.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/endomapper_seq_2_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.8146961919031103,
+          -0.521296863036253,
+          -0.9962712592635294
+        ],
+        "max": [
+          0.8146961919031103,
+          0.5026005671418553,
+          0.977018553464866
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/endomapper_seq_2_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.7401161650499978,
+          -0.437863855686719,
+          -0.9962712592635294
+        ],
+        "max": [
+          0.7503503897255603,
+          0.49764506203714537,
+          0.977018553464866
+        ]
+      }
+    }
+  }
+]

@@ -55,6 +55,7 @@
 
     <section id="video">
       <h2>Overview video</h2>
+      <p class="hide-poster">A 38-second walkthrough of the problem, constrained graph, C3VDv2 result, and a reconstructed point cloud (aligned to dataset GT for the interactive viewer).</p>
       <video controls playsinline preload="metadata" poster="video/poster.jpg">
         <source src="video/demo.mp4" type="video/mp4" />
       </video>
@@ -78,7 +79,7 @@
       <h2>Interactive reconstructions</h2>
       <p>
         Drag to orbit, pinch or scroll to zoom. <strong>Ours</strong> is the SfM point cloud from constrained dense matching.
-        <strong>Ground truth</strong> is the dataset mesh used only for comparison (not an output of this paper).
+        Ground truth is the dataset mesh, <strong>Sim(3)+ICP aligned</strong> to our SfM cloud for visualization (not an output of this paper).
       </p>
       <div class="toolbar">
         <label>Scene

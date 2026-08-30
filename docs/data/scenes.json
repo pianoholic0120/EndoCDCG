@@ -134,7 +134,7 @@
       "format": "glb",
       "file": "c3vd_sigmoid_t1_a_gt.glb",
       "tris": 70000,
-      "bytes": 2304856
+      "bytes": 2304860
     }
   },
   {
@@ -183,7 +183,7 @@
       "format": "glb",
       "file": "vrcaps_colon_17_gt.glb",
       "tris": 65254,
-      "bytes": 2180624
+      "bytes": 2180680
     }
   },
   {
@@ -231,7 +231,7 @@
       "format": "glb",
       "file": "vrcaps_stomach_5_gt.glb",
       "tris": 46412,
-      "bytes": 1504620
+      "bytes": 1504680
     }
   }
 ]

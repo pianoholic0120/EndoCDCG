@@ -36,23 +36,10 @@ Poster layout: http://127.0.0.1:8080/#poster
 ## Publish (run these yourself)
 
 1. Create an empty **public** GitHub repository named `EndoCDCG` (no README).
-2. In this folder:
-
-```bash
-cd /home/arthur/EndoCDCG
-git init
-git add .
-git status   # confirm no secrets; source_archive is intended
-git commit -m "Add ICIP 2026 EndoCDCG project page"
-git branch -M main
-git remote add origin https://github.com/pianoholic0120/EndoCDCG.git
-git push -u origin main
-```
-
-3. GitHub → **Settings → Pages**:
-   - Source: **GitHub Actions**
-   - After the workflow `Deploy GitHub Pages` succeeds, the site is live.
-4. Print `docs/qr/endocdcg.png` (Level H) on the poster, at least 3–4 cm wide, with white margin.
+2. Push `main` as in the original instructions.
+3. **Required once, or deploy will fail:** GitHub → repo → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+   The Actions token cannot turn Pages on by itself. After this, re-run the failed workflow (Actions → Deploy GitHub Pages → Re-run) or push again.
+4. Print `docs/qr/endocdcg.png` on the poster.
 
 Optional extra protection: GitHub → Settings → Collaborators, and enable **Rulesets** to prevent force-push to `main`.
 

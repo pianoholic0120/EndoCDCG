@@ -1,0 +1,237 @@
+[
+  {
+    "id": "c3vd_cecum_t2_a",
+    "label": "C3VDv2 \u00b7 cecum t2-a",
+    "dataset": "C3VD",
+    "modes": [
+      "browse"
+    ],
+    "preview": "assets/previews/c3vd_cecum_t2_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_cecum_t2_a_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -17.37312889099121,
+          -11.06617546081543,
+          -2.7666144371032715
+        ],
+        "max": [
+          8.041905403137207,
+          16.718429565429688,
+          25.569534301757812
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_cecum_t2_a_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -16.232696533203125,
+          -11.06617546081543,
+          -2.4676172733306885
+        ],
+        "max": [
+          8.041905403137207,
+          15.226336479187012,
+          24.114484786987305
+        ]
+      }
+    }
+  },
+  {
+    "id": "c3vd_trans_t4_a",
+    "label": "C3VDv2 \u00b7 transverse t4-a",
+    "dataset": "C3VD",
+    "modes": [
+      "browse",
+      "compare"
+    ],
+    "preview": "assets/previews/c3vd_trans_t4_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_trans_t4_a_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -6.818498611450195,
+          -11.681077003479004,
+          -1.1808199882507324
+        ],
+        "max": [
+          17.254213333129883,
+          6.867381572723389,
+          24.498706817626953
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_trans_t4_a_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -6.444930553436279,
+          -10.650894165039062,
+          -1.0929385423660278
+        ],
+        "max": [
+          17.254213333129883,
+          6.867381572723389,
+          24.498706817626953
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_trans_t4_a_gt.glb",
+      "format": "glb",
+      "file": "c3vd_trans_t4_a_gt.glb",
+      "tris": 69999,
+      "bytes": 2307392
+    }
+  },
+  {
+    "id": "c3vd_sigmoid_t1_a",
+    "label": "C3VDv2 \u00b7 sigmoid t1-a",
+    "dataset": "C3VD",
+    "modes": [
+      "compare"
+    ],
+    "preview": "assets/previews/c3vd_sigmoid_t1_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_sigmoid_t1_a_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -9.006725311279297,
+          -13.782173156738281,
+          -6.331437110900879
+        ],
+        "max": [
+          19.717212677001953,
+          18.92095947265625,
+          29.807674407958984
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_sigmoid_t1_a_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -8.508644104003906,
+          -13.782173156738281,
+          -6.318452835083008
+        ],
+        "max": [
+          19.421064376831055,
+          18.92095947265625,
+          25.480607986450195
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_sigmoid_t1_a_gt.glb",
+      "format": "glb",
+      "file": "c3vd_sigmoid_t1_a_gt.glb",
+      "tris": 70000,
+      "bytes": 2304856
+    }
+  },
+  {
+    "id": "vrcaps_colon_17",
+    "label": "VR-CAPS \u00b7 colon GI_2_17",
+    "dataset": "VR-CAPS",
+    "modes": [
+      "browse",
+      "compare"
+    ],
+    "preview": "assets/previews/vrcaps_colon_17.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/vrcaps_colon_17_desktop.bin",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -8.07272720336914,
+          -4.849184036254883,
+          -6.069884300231934
+        ],
+        "max": [
+          5.944962501525879,
+          7.796988487243652,
+          12.152941703796387
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/vrcaps_colon_17_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -7.951661109924316,
+          -4.849184036254883,
+          -6.006778240203857
+        ],
+        "max": [
+          5.944962501525879,
+          5.792551517486572,
+          11.316499710083008
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/vrcaps_colon_17_gt.glb",
+      "format": "glb",
+      "file": "vrcaps_colon_17_gt.glb",
+      "tris": 65254,
+      "bytes": 2180624
+    }
+  },
+  {
+    "id": "vrcaps_stomach_5",
+    "label": "VR-CAPS \u00b7 stomach GI_2_5",
+    "dataset": "VR-CAPS",
+    "modes": [
+      "compare"
+    ],
+    "preview": "assets/previews/vrcaps_stomach_5.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/vrcaps_stomach_5_desktop.bin",
+        "count": 137035,
+        "bytes": 1370382,
+        "min": [
+          -40.16981887817383,
+          -14.992339134216309,
+          -31.502843856811523
+        ],
+        "max": [
+          53.36262512207031,
+          64.50863647460938,
+          119.58903503417969
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/vrcaps_stomach_5_mobile.bin",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -17.39308738708496,
+          -14.094725608825684,
+          -31.502843856811523
+        ],
+        "max": [
+          53.36262512207031,
+          41.89115524291992,
+          67.1052017211914
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/vrcaps_stomach_5_gt.glb",
+      "format": "glb",
+      "file": "vrcaps_stomach_5_gt.glb",
+      "tris": 46412,
+      "bytes": 1504620
+    }
+  }
+]

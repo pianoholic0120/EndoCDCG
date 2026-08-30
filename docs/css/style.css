@@ -1,0 +1,169 @@
+:root {
+  --bg: #f7f5f1;
+  --paper: #fffcf7;
+  --ink: #1c1916;
+  --muted: #5c564e;
+  --line: #ddd6cb;
+  --accent: #8b2e2e;
+  --accent-2: #2c4a6e;
+  --shadow: 0 10px 40px rgba(40, 28, 18, 0.08);
+  --max: 1080px;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+body.poster .hide-poster { display: none !important; }
+a { color: var(--accent-2); }
+header.hero, main, footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+header.hero { padding-top: 3.2rem; padding-bottom: 2rem; }
+.venue {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: var(--accent);
+  font-weight: 650;
+}
+h1 {
+  font-weight: 650;
+  font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+  line-height: 1.25;
+  margin: 0.4rem 0 0.8rem;
+}
+.authors { font-size: 1.02rem; }
+.authors span { white-space: nowrap; }
+.affil { color: var(--muted); font-size: 0.92rem; margin-top: 0.35rem; }
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  padding: 0.55rem 0;
+}
+.btn {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  border: 1px solid var(--ink);
+}
+.btn.ghost { background: transparent; color: var(--ink); }
+section { padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--line); }
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.8rem;
+}
+.abstract { font-size: 1.02rem; }
+video {
+  width: 100%;
+  border-radius: 12px;
+  background: #111;
+  box-shadow: var(--shadow);
+}
+.viewer-wrap {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow);
+  min-height: 420px;
+}
+#view { width: 100%; height: min(72vh, 640px); display: block; touch-action: none; }
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0.7rem 0;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 0.88rem;
+}
+select, .toolbar button {
+  font: inherit;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.toolbar button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.hint { color: #efe7dc; font-size: 0.78rem; position: absolute; left: 12px; bottom: 12px; font-family: "Source Sans 3", system-ui, sans-serif; pointer-events: none; }
+.split {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: #fff;
+  cursor: ew-resize;
+  z-index: 3;
+  transform: translateX(-1px);
+}
+.split::after {
+  content: "";
+  position: absolute;
+  inset: 0 -14px;
+}
+.badge-l, .badge-r {
+  position: absolute;
+  top: 12px;
+  z-index: 2;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 0.75rem;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+.badge-l { left: 12px; }
+.badge-r { right: 12px; }
+.loading {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  color: #ddd; font-family: "Source Sans 3", system-ui, sans-serif;
+  background: rgba(10,10,10,.45);
+  z-index: 4;
+}
+.loading.hidden { display: none; }
+figure { margin: 1rem 0; }
+figure img { width: 100%; border-radius: 8px; background: #fff; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 0.35rem; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  background: var(--paper);
+}
+th, td { border: 1px solid var(--line); padding: 0.4rem 0.45rem; text-align: center; }
+th { background: #efe8de; }
+.cite-list { padding-left: 1.2rem; font-size: 0.92rem; }
+.cite-list li { margin: 0.35rem 0; }
+pre {
+  background: #1c1916;
+  color: #f2ebe3;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.78rem;
+}
+.copy {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  margin-top: 0.4rem;
+}
+footer { padding: 2rem 1.25rem 3rem; color: var(--muted); font-size: 0.88rem; }
+.qr { width: 140px; background: #fff; padding: 8px; border-radius: 8px; }
+@media (max-width: 700px) {
+  #view { height: 62vh; }
+  .btns .btn { font-size: 0.82rem; }
+}

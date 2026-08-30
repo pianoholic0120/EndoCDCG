@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EndoCDCG — Constrained Dense Correspondence Graphs for Endoscopic SfM</title>
+  <meta name="description" content="Project page for Constrained Dense Correspondence Graphs for Robust Structure-from-Motion Targeting Endoscopic Videos (IEEE ICIP 2026)." />
+  <link rel="canonical" href="https://pianoholic0120.github.io/EndoCDCG/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@450;600;700&family=Source+Serif+4:opsz,wght@8..60,450;8..60,650&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js",
+      "three/addons/": "./vendor/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <div class="venue">IEEE ICIP 2026</div>
+    <h1>Constrained Dense Correspondence Graphs for Robust Structure-from-Motion Targeting Endoscopic Videos</h1>
+    <p class="authors">
+      Yu-Chun Lin<sup>1</sup>,
+      Ming-Lun Han<sup>2</sup>,
+      Kuang-Chen Yen<sup>2</sup>,
+      Homer H. Chen<sup>1</sup>
+    </p>
+    <p class="affil"><sup>1</sup> National Taiwan University &nbsp;·&nbsp; <sup>2</sup> National Taiwan University Hospital</p>
+    <div class="btns">
+      <a class="btn" href="https://ieeexplore.ieee.org/document/11630223">Paper (IEEE Xplore)</a>
+      <a class="btn ghost" href="paper/camera_ready.pdf">PDF</a>
+      <a class="btn ghost" href="#video">Video</a>
+      <a class="btn ghost" href="#interactive">Interactive 3D</a>
+      <a class="btn ghost" href="#cite">Cite</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="abstract" class="hide-poster">
+      <h2>Abstract</h2>
+      <p class="abstract">
+        Reconstructing complete 3D geometry from monocular clinical endoscopic videos is challenging due to weak texture,
+        repetitive tissue patterns, and severe illumination artifacts. Although emerging dense matching methods exhibit
+        improved resilience to textureless regions, they often produce abundant spurious correspondences across non-overlapping
+        views, which corrupts the correspondence graph and causes structure-from-motion (SfM) pipelines to fail. We propose a
+        framework for constructing a dense correspondence graph that leverages explicit temporal locality, parallax-driven
+        geometric constraints, and loop-closure revisiting to enable reliable SfM for monocular endoscopic videos.
+        Combined with illumination-aware masking and SfM initialization adapted to endoscopy, the method improves
+        registration robustness and reconstruction completeness on phantom and clinical datasets.
+      </p>
+    </section>
+
+    <section id="video">
+      <h2>Overview video</h2>
+      <video controls playsinline preload="metadata" poster="video/poster.jpg">
+        <source src="video/demo.mp4" type="video/mp4" />
+      </video>
+    </section>
+
+    <section id="method" class="hide-poster">
+      <h2>Method</h2>
+      <p>
+        After undistortion, specular and shadow-aware masking retains photometrically reliable pixels.
+        Optical-flow keyframes (RAFT) promote parallax. Dense matches from MASt3R are admitted only along a constrained
+        graph: local temporal edges <em>E</em><sub>local</sub>, keyframe edges <em>E</em><sub>keyframe</sub>, and CosPlace loop edges <em>E</em><sub>loop</sub>.
+        Incremental COLMAP SfM with a relaxed triangulation angle then recovers poses and a point cloud.
+      </p>
+      <figure>
+        <img src="figures/paper-1.webp" alt="Paper page with method overview" />
+        <figcaption>Method overview and matching motivation (from the camera-ready manuscript).</figcaption>
+      </figure>
+    </section>
+
+    <section id="interactive">
+      <h2>Interactive reconstructions</h2>
+      <p>
+        Drag to orbit, pinch or scroll to zoom. <strong>Ours</strong> is the SfM point cloud from constrained dense matching.
+        <strong>Ground truth</strong> is the dataset mesh used only for comparison (not an output of this paper).
+      </p>
+      <div class="toolbar">
+        <label>Scene
+          <select id="scene-select"></select>
+        </label>
+        <button type="button" data-mode="browse" class="active">Point cloud</button>
+        <button type="button" data-mode="compare">Slider vs GT</button>
+        <button type="button" data-mode="overlay">Overlay GT</button>
+        <button type="button" id="btn-reset">Reset view</button>
+        <button type="button" id="btn-spin">Auto-rotate</button>
+      </div>
+      <div class="viewer-wrap">
+        <canvas id="view"></canvas>
+        <div id="split" class="split" style="left:50%; display:none"></div>
+        <div id="badge-l" class="badge-l" style="display:none">Ours (SfM points)</div>
+        <div id="badge-r" class="badge-r" style="display:none">Ground truth (dataset)</div>
+        <div id="loading" class="loading">Loading…</div>
+        <div id="status" class="hint"></div>
+      </div>
+    </section>
+
+    <section id="results" class="hide-poster">
+      <h2>Quantitative results</h2>
+      <p>
+        Point-to-triangle errors on C3VDv2 (MedAE / MAE / RMSE, mm). <em>N</em> is the number of input frames.
+        Extended (Ext.) uses a 20&nbsp;mm neighborhood around surveyed surfaces (Sur.).
+      </p>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>c0_cecum_t2v3<br>(N=595)</th>
+              <th>c1_sigmoid2_t2v1<br>(N=400)</th>
+              <th>c1_transverse2_t1v3<br>(N=517)</th>
+              <th>c2_ascending_t4v1<br>(N=292)</th>
+              <th>c2_transverse1_t4v2<br>(N=382)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ext. COLMAP</td>
+              <td>7.93 / 9.28 / 10.79</td>
+              <td>5.57 / 7.90 / 13.14</td>
+              <td>4.24 / 6.12 / 11.67</td>
+              <td>10.88 / 11.32 / 12.02</td>
+              <td>6.01 / 8.76 / 29.51</td>
+            </tr>
+            <tr>
+              <td>Ext. COLMAP + Enh.</td>
+              <td>8.02 / 8.85 / 10.74</td>
+              <td>5.46 / 7.64 / 15.08</td>
+              <td>3.90 / 6.36 / 11.34</td>
+              <td>8.66 / 10.17 / 15.36</td>
+              <td>14.76 / 15.08 / 18.40</td>
+            </tr>
+            <tr>
+              <td><strong>Ext. Ours</strong></td>
+              <td>7.90 / 8.41 / 9.68</td>
+              <td>5.21 / 6.44 / 8.21</td>
+              <td>4.01 / 6.00 / 8.54</td>
+              <td>8.65 / 8.79 / 10.05</td>
+              <td>6.77 / 8.18 / 10.80</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1rem">Ablation on graph topology (Dataset 1, N=601), registration rate:</p>
+      <table>
+        <thead>
+          <tr><th>E local</th><th>E keyframe</th><th>E loop</th><th>Registration</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>✓</td><td></td><td></td><td>2.2%</td></tr>
+          <tr><td>✓</td><td>✓</td><td></td><td>98.5%</td></tr>
+          <tr><td>✓</td><td>✓</td><td>✓</td><td>99.7%</td></tr>
+        </tbody>
+      </table>
+      <figure>
+        <img src="figures/paper-3.webp" alt="Qualitative reconstructions from the paper" />
+        <figcaption>Qualitative point clouds and trajectories from the manuscript (Figs. 5–6 region).</figcaption>
+      </figure>
+    </section>
+
+    <section id="cite">
+      <h2>Citation</h2>
+      <pre id="bibtex">@inproceedings{lin2026endocdcg,
+  title     = {Constrained Dense Correspondence Graphs for Robust Structure-from-Motion Targeting Endoscopic Videos},
+  author    = {Lin, Yu-Chun and Han, Ming-Lun and Yen, Kuang-Chen and Chen, Homer H.},
+  booktitle = {IEEE International Conference on Image Processing (ICIP)},
+  year      = {2026}
+}</pre>
+      <button class="copy btn ghost" id="copy-bib" type="button">Copy BibTeX</button>
+    </section>
+
+    <section id="acknowledgements" class="hide-poster">
+      <h2>Acknowledgements</h2>
+      <p>
+        Supported by NTU (114L9009) and NSTC (113-2222-E-002-003-MY3).
+        Clinical data collection was approved by the IRB of National Taiwan University Hospital (No. 202407132RINC).
+        Interactive 3D on this page uses public phantom / simulated datasets only (C3VDv2 and VR-CAPS).
+      </p>
+    </section>
+
+    <section id="citations" class="hide-poster">
+      <h2>Datasets and related work</h2>
+      <h3>Datasets</h3>
+      <ol class="cite-list">
+        <li>T. L. Bobrow, M. Golhar, R. Vijayan, V. S. Akshintala, J. R. Garcia, and N. J. Durr, “Colonoscopy 3D video dataset with paired depth from 2D-3D registration,” <em>Medical Image Analysis</em>, vol. 90, p. 102956, 2023. (<strong>C3VD</strong>)</li>
+        <li>M. V. Golhar, L. S. G. Fretes, L. Ayers, V. S. Akshintala, T. L. Bobrow, and N. J. Durr, “C3VDv2: Colonoscopy 3D video dataset with enhanced realism,” arXiv:2506.24074, 2025. (<strong>C3VDv2</strong>)</li>
+        <li>K. Incetan, I. O. Celik, A. Obeid, N. I. Gokceler, K. Ozyoruk, Y. Almalioglu, R. J. Chen, N. I. Mahmood, H. Gilbert, N. J. Durr, and M. Turan, “VR-Caps: A virtual environment for capsule endoscopy,” <em>Medical Image Analysis</em>, vol. 70, p. 101990, 2021. (<strong>VR-CAPS</strong>)</li>
+        <li>P. Azagra, C. Sostres, Á. Ferrández, L. Riazuelo, C. Tomasini, A. L. Barbed, J. Morlana, D. Recasens, V. M. Batlle, J. J. Gómez-Rodríguez, R. P. Pueyo, J. Civera, J. D. Tardós, A. C. Murillo, A. Lanas, and J. M. M. Montiel, “EndoMapper dataset of complete calibrated endoscopy procedures,” <em>Scientific Data</em>, vol. 10, 2023. (<strong>EndoMapper</strong>)</li>
+      </ol>
+      <h3>Methods cited in the paper</h3>
+      <ol class="cite-list" start="5">
+        <li>V. Leroy, Y. Cabon, and J. Revaud, “Grounding image matching in 3D with MASt3R,” in <em>ECCV</em>, 2024.</li>
+        <li>J. L. Schönberger and J.-M. Frahm, “Structure-from-motion revisited,” in <em>CVPR</em>, 2016. (<strong>COLMAP</strong>)</li>
+        <li>Z. Teed and J. Deng, “RAFT: Recurrent all-pairs field transforms for optical flow,” in <em>ECCV</em>, 2020.</li>
+        <li>G. Berton, C. Masone, and B. Caputo, “Rethinking visual geo-localization for large-scale applications,” in <em>CVPR</em>, 2022. (<strong>CosPlace</strong>)</li>
+        <li>T.-Y. Wei, M.-L. Han, W.-C. Liao, K.-C. Yen, S.-J. Chen, and H. H. Chen, “Endoscopic feature enhancement for stomach 3D reconstruction without dyeing,” in <em>ICIP</em>, 2023.</li>
+        <li>O. el Meslouhi, M. Kardouchi, H. Allali, T. Gadi, and Y. Ait Benkaddour, “Automatic detection and inpainting of specular reflections for colposcopic images,” <em>Open Computer Science</em>, 2011.</li>
+        <li>V. M. Batlle, J. M. M. Montiel, P. Fua, and J. D. Tardós, “LightNeuS: Neural surface reconstruction in endoscopy using illumination decline,” in <em>MICCAI</em>, 2023.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>IEEE ICIP 2026 · Project page for archival demonstration. Canonical URL:
+      <a href="https://pianoholic0120.github.io/EndoCDCG/">https://pianoholic0120.github.io/EndoCDCG/</a></p>
+    <p>Poster QR (same URL, error-correction H):</p>
+    <img class="qr" src="qr/endocdcg.png" alt="QR code to this project page" />
+    <p>This page does not host source code. PDF is the author manuscript for academic sharing; please also cite the IEEE version.</p>
+  </footer>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -7,7 +7,6 @@ EndoMetric_output remaining on disk.
 
 from __future__ import annotations
 
-import itertools
 import json
 import re
 import shutil
@@ -31,64 +30,81 @@ POINTS = OUT / "points"
 MESHES = OUT / "meshes"
 ARCHIVE = ROOT / "source_archive"
 
-SCENES = [
-    {
-        "id": "c3vd_cecum_t2_a",
-        "label": "C3VDv2 · cecum t2-a",
+def _c3vd(scene_id: str, folder: str, title: str) -> dict:
+    return {
+        "id": scene_id,
+        "label": title,
         "dataset": "C3VD",
-        "modes": ["browse"],
-        "ply": SRC / "C3VD/cecum_t2_a/colmap_mast3r/dense/sparse/0/points3D.ply",
-        "thumb": SRC / "C3VD/cecum_t2_a/original_images/0000.png",
-    },
-    {
-        "id": "c3vd_trans_t4_a",
-        "label": "C3VDv2 · transverse t4-a",
-        "dataset": "C3VD",
-        "modes": ["browse", "compare"],
-        "ply": SRC / "C3VD/trans_t4_a/colmap_mast3r/dense/sparse/0/points3D.ply",
-        "gt": SRC / "C3VD/trans_t4_a_results/GT/coverage_mesh_cropped.obj",
-        "sparse": SRC / "C3VD/trans_t4_a/colmap_mast3r/dense/sparse/0",
-        "gt_pose": SRC / "C3VD/trans_t4_a_results/GT/pose.txt",
+        "ply": SRC / f"C3VD/{folder}/colmap_mast3r/dense/sparse/0/points3D.ply",
+        "gt": SRC / f"C3VD/{folder}_results/GT/coverage_mesh_cropped.obj",
+        "sparse": SRC / f"C3VD/{folder}/colmap_mast3r/dense/sparse/0",
+        "gt_pose": SRC / f"C3VD/{folder}_results/GT/pose.txt",
         "pose_kind": "c3vd",
-        "thumb": SRC / "C3VD/trans_t4_a/original_images/0000.png",
-    },
-    {
-        "id": "c3vd_sigmoid_t1_a",
-        "label": "C3VDv2 · sigmoid t1-a",
-        "dataset": "C3VD",
-        "modes": ["compare"],
-        "ply": SRC / "C3VD/sigmoid_t1_a/colmap_mast3r/dense/sparse/0/points3D.ply",
-        "gt": SRC / "C3VD/sigmoid_t1_a_results/GT/coverage_mesh_cropped.obj",
-        "sparse": SRC / "C3VD/sigmoid_t1_a/colmap_mast3r/dense/sparse/0",
-        "gt_pose": SRC / "C3VD/sigmoid_t1_a_results/GT/pose.txt",
-        "pose_kind": "c3vd",
-        "thumb": SRC / "C3VD/sigmoid_t1_a/original_images/0000.png",
-    },
-    {
-        "id": "vrcaps_colon_17",
-        "label": "VR-CAPS · colon GI_2_17",
+        "thumb": SRC / f"C3VD/{folder}/original_images/0000.png",
+    }
+
+
+def _vrcaps(scene_id: str, folder: str, title: str) -> dict:
+    results_gt = SRC / f"VR_CAPS/{folder}_results/GT"
+    gt = results_gt / "evaluated_gt_faces_visible_flip.ply"
+    if not gt.exists():
+        gt = results_gt / "gt_input.ply"
+    thumb = None
+    for cand in (
+        SRC / f"VR_CAPS/{folder}/original_images/0000.jpg",
+        SRC / f"VR_CAPS/{folder}/original_images/0000.png",
+    ):
+        if cand.exists():
+            thumb = cand
+            break
+    return {
+        "id": scene_id,
+        "label": title,
         "dataset": "VR-CAPS",
-        "modes": ["browse", "compare"],
-        "ply": SRC / "VR_CAPS/colon_GI_2_17/colmap_mast3r/dense/sparse/0/points3D.ply",
-        "gt": SRC / "VR_CAPS/colon_GI_2_17_results/GT/evaluated_gt_faces_visible_flip.ply",
-        "sparse": SRC / "VR_CAPS/colon_GI_2_17/colmap_mast3r/dense/sparse/0",
-        "gt_pose": SRC / "VR_CAPS/colon_GI_2_17_results/GT/images.txt",
+        "ply": SRC / f"VR_CAPS/{folder}/colmap_mast3r/dense/sparse/0/points3D.ply",
+        "gt": gt if gt.exists() else None,
+        "sparse": SRC / f"VR_CAPS/{folder}/colmap_mast3r/dense/sparse/0",
+        "gt_pose": results_gt / "images.txt" if (results_gt / "images.txt").exists() else None,
         "pose_kind": "colmap_images_txt",
-        "thumb": None,
-    },
-    {
-        "id": "vrcaps_stomach_5",
-        "label": "VR-CAPS · stomach GI_2_5",
-        "dataset": "VR-CAPS",
-        "modes": ["compare"],
-        "ply": SRC / "VR_CAPS/stomach_GI_2_5/colmap_mast3r/dense/sparse/0/points3D.ply",
-        "gt": SRC / "VR_CAPS/stomach_GI_2_5_results/GT/evaluated_gt_faces_visible_flip.ply",
-        "sparse": SRC / "VR_CAPS/stomach_GI_2_5/colmap_mast3r/dense/sparse/0",
-        "gt_pose": SRC / "VR_CAPS/stomach_GI_2_5_results/GT/images.txt",
-        "pose_kind": "colmap_images_txt",
-        "thumb": None,
-    },
+        "thumb": thumb,
+    }
+
+
+def _endomapper(scene_id: str, seq: str, title: str) -> dict:
+    root = SRC / f"Endomapper/Simulated_Sequences/{seq}"
+    thumb = root / "original_images/image_0000.png"
+    return {
+        "id": scene_id,
+        "label": title,
+        "dataset": "EndoMapper",
+        "ply": root / "colmap_mast3r/dense/sparse/0/points3D.ply",
+        "gt": None,
+        "thumb": thumb if thumb.exists() else None,
+    }
+
+
+# Compare viewer: GT when available. EndoMapper is a separate points-only section.
+COMPARE_SCENES = [
+    _c3vd("c3vd_cecum_t1_b", "cecum_t1_b", "C3VDv2 · cecum t1-b"),
+    _c3vd("c3vd_cecum_t2_a", "cecum_t2_a", "C3VDv2 · cecum t2-a"),
+    _c3vd("c3vd_cecum_t2_b", "cecum_t2_b", "C3VDv2 · cecum t2-b"),
+    _c3vd("c3vd_trans_t4_a", "trans_t4_a", "C3VDv2 · transverse t4-a"),
+    _c3vd("c3vd_sigmoid_t1_a", "sigmoid_t1_a", "C3VDv2 · sigmoid t1-a"),
+    _c3vd("c3vd_sigmoid_t3_b", "sigmoid_t3_b", "C3VDv2 · sigmoid t3-b"),
+    _vrcaps("vrcaps_colon_17", "colon_GI_2_17", "VR-CAPS · colon GI_2_17"),
+    _vrcaps("vrcaps_colon_18", "colon_GI_2_18", "VR-CAPS · colon GI_2_18"),
+    _vrcaps("vrcaps_stomach_5", "stomach_GI_2_5", "VR-CAPS · stomach GI_2_5"),
+    _vrcaps("vrcaps_stomach_7", "stomach_GI_2_7", "VR-CAPS · stomach GI_2_7"),
 ]
+
+ENDOMAPPER_SCENES = [
+    _endomapper("endomapper_seq_0", "Seq_0", "EndoMapper · Seq 0"),
+    _endomapper("endomapper_seq_1", "Seq_1", "EndoMapper · Seq 1"),
+    _endomapper("endomapper_seq_2", "Seq_2", "EndoMapper · Seq 2"),
+]
+
+# Back-compat alias
+SCENES = COMPARE_SCENES
 
 LODS = {
     "desktop": 280_000,
@@ -182,12 +198,24 @@ def cam_center_from_w2c(R: np.ndarray, t: np.ndarray) -> np.ndarray:
     return -R.T @ t
 
 
+def frame_id_from_name(name: str) -> int | None:
+    """Same as Endoscopic_3D_Reconstruction/utils/align_mesh.py."""
+    try:
+        return int(Path(name).name.split(".")[0])
+    except (ValueError, IndexError):
+        return None
+
+
 def frame_idx(name: str) -> int:
+    fid = frame_id_from_name(name)
+    if fid is not None:
+        return fid
     nums = re.findall(r"\d+", Path(name).stem)
     return int(nums[-1]) if nums else -1
 
 
 def estimate_similarity_transform(A: np.ndarray, B: np.ndarray) -> np.ndarray:
+    """Umeyama Sim(3); identical to align_mesh.py."""
     assert A.shape == B.shape
     n = A.shape[0]
     centroid_A = A.mean(axis=0)
@@ -207,6 +235,24 @@ def estimate_similarity_transform(A: np.ndarray, B: np.ndarray) -> np.ndarray:
     T[:3, :3] = scale * R
     T[:3, 3] = t
     return T
+
+
+def best_fit_transform(A: np.ndarray, B: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Rigid best-fit (R, t) mapping A onto B. Same as align_to_gt_VR_CAPS.py."""
+    assert A.shape == B.shape
+    m = A.shape[1]
+    centroid_A = np.mean(A, axis=0)
+    centroid_B = np.mean(B, axis=0)
+    AA = A - centroid_A
+    BB = B - centroid_B
+    H = AA.T @ BB
+    U, S, Vt = np.linalg.svd(H)
+    R = Vt.T @ U.T
+    if np.linalg.det(R) < 0:
+        Vt[m - 1, :] *= -1
+        R = Vt.T @ U.T
+    t = centroid_B - R @ centroid_A
+    return R, t
 
 
 def load_c3vd_centers(path: Path) -> dict[int, np.ndarray]:
@@ -246,100 +292,157 @@ def load_images_txt_centers(path: Path) -> dict[int, np.ndarray]:
     return out
 
 
-def load_colmap_centers(sparse: Path) -> dict[int, np.ndarray]:
+def load_est_centers(sparse: Path) -> dict[int, np.ndarray]:
+    txt = load_colmap_centers_from_images_txt(sparse)
+    if txt:
+        return txt
+    if pycolmap is None:
+        return {}
     rec = pycolmap.Reconstruction(str(sparse))
     out = {}
     for image in rec.images.values():
         cfw = image.cam_from_world() if callable(getattr(image, "cam_from_world", None)) else image.cam_from_world
         wfc = cfw.inverse()
         mat = wfc.matrix()
-        out[frame_idx(image.name)] = np.asarray(mat[:3, 3], dtype=np.float64)
+        fid = frame_idx(image.name)
+        if fid >= 0:
+            out[fid] = np.asarray(mat[:3, 3], dtype=np.float64)
     return out
 
 
-def pose_sim3_gt_to_est(sc: dict) -> np.ndarray | None:
-    if pycolmap is None or not sc.get("sparse") or not sc.get("gt_pose"):
-        return None
-    sparse, gt_pose = Path(sc["sparse"]), Path(sc["gt_pose"])
-    if not sparse.exists() or not gt_pose.exists():
-        return None
-    est = load_colmap_centers(sparse)
-    if sc.get("pose_kind") == "c3vd":
-        gt = load_c3vd_centers(gt_pose)
-    else:
-        gt = load_images_txt_centers(gt_pose)
-    ids = sorted(set(est) & set(gt))
-    if len(ids) < 8:
-        print(f"  pose match too few: {len(ids)}", flush=True)
-        return None
-    A = np.stack([gt[i] for i in ids])  # GT centers
-    B = np.stack([est[i] for i in ids])  # EST centers
-    T = estimate_similarity_transform(A, B)  # GT -> EST
-    err = np.linalg.norm((T[:3, :3] @ A.T).T + T[:3, 3] - B, axis=1).mean()
-    print(f"  pose Sim3 GT->EST: {len(ids)} cams, mean center err {err:.4f}", flush=True)
-    return T
-
-
-def pca_inits(src: np.ndarray, dst: np.ndarray) -> list[np.ndarray]:
-    def axes(pts):
-        c = pts.mean(0)
-        _, _, vh = np.linalg.svd(pts - c, full_matrices=False)
-        return c, vh
-
-    cs, As = axes(src)
-    cd, Ad = axes(dst)
-    ss = np.sqrt(((src - cs) ** 2).sum() / max(len(src), 1))
-    sd = np.sqrt(((dst - cd) ** 2).sum() / max(len(dst), 1))
-    scale = sd / max(ss, 1e-12)
-    inits = []
-    for signs in itertools.product([-1.0, 1.0], repeat=3):
-        A = np.diag(signs) @ As
-        R = Ad.T @ A
-        if np.linalg.det(R) < 0:
-            R[:, 2] *= -1
-        T = np.eye(4)
-        T[:3, :3] = scale * R
-        T[:3, 3] = cd - scale * R @ cs
-        inits.append(T)
-    return inits
-
-
-def icp_gt_to_points(mesh: o3d.geometry.TriangleMesh, pcd: o3d.geometry.PointCloud, T0: np.ndarray | None) -> np.ndarray:
-    src_m = mesh.sample_points_uniformly(number_of_points=40000)
-    dst = downsample(pcd, 40000)
-    src_pts = np.asarray(src_m.points)
-    dst_pts = np.asarray(dst.points)
-    extent = float(np.linalg.norm(dst.get_axis_aligned_bounding_box().get_extent()))
-    thresh = max(extent * 0.08, 1e-3)
-    candidates = [T0] if T0 is not None else []
-    candidates.extend(pca_inits(src_pts, dst_pts))
-    best_t, best_fit = None, -1.0
-    est = o3d.pipelines.registration.TransformationEstimationPointToPoint(with_scaling=True)
-    crit = o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=80)
-    for T in candidates:
-        if T is None:
+def load_colmap_centers_from_images_txt(sparse: Path) -> dict[int, np.ndarray]:
+    """COLMAP camera centers from images.txt (two lines per image, or one)."""
+    txt = sparse / "images.txt"
+    if not txt.exists():
+        return {}
+    out = {}
+    lines = [ln for ln in txt.read_text().splitlines() if ln.strip() and not ln.startswith("#")]
+    i = 0
+    while i < len(lines):
+        parts = lines[i].split()
+        i += 1
+        if len(parts) < 10:
             continue
-        reg = o3d.pipelines.registration.registration_icp(src_m, dst, thresh, T, est, crit)
-        if reg.fitness > best_fit:
-            best_fit, best_t = reg.fitness, reg.transformation
-    if best_t is None:
-        return np.eye(4)
-    # finer
-    thresh2 = max(extent * 0.03, 1e-3)
-    reg = o3d.pipelines.registration.registration_icp(src_m, dst, thresh2, best_t, est, crit)
-    print(f"  ICP fitness {reg.fitness:.3f} rmse {reg.inlier_rmse:.4f}", flush=True)
-    return np.asarray(reg.transformation)
+        try:
+            q = np.array(list(map(float, parts[1:5])))
+            t = np.array(list(map(float, parts[5:8])))
+            name = parts[9]
+        except ValueError:
+            continue
+        fid = frame_idx(name)
+        if fid < 0:
+            continue
+        R = qvec_to_rotmat(q)
+        out[fid] = cam_center_from_w2c(R, t)
+        # POINTS2D line
+        if i < len(lines) and (lines[i].startswith(" ") or not lines[i][0].isdigit()):
+            i += 1
+        elif i < len(lines) and len(lines[i].split()) != 10:
+            i += 1
+    return out
 
 
-def align_gt_mesh(sc: dict, mesh: o3d.geometry.TriangleMesh, pcd: o3d.geometry.PointCloud) -> o3d.geometry.TriangleMesh:
-    T_pose = pose_sim3_gt_to_est(sc)
-    T = icp_gt_to_points(mesh, pcd, T_pose)
+def align_c3vd_via_align_mesh(sc: dict) -> o3d.geometry.TriangleMesh | None:
+    """Same Sim(3) as run.sh -> utils/align_mesh.py (GT pose.txt cameras -> COLMAP cameras)."""
+    gt_obj = Path(sc["gt"])
+    pose = Path(sc["gt_pose"])
+    sparse = Path(sc["sparse"])
+    if not gt_obj.exists() or not pose.exists() or not sparse.exists():
+        return None
+    if pycolmap is None:
+        print("  pycolmap missing; cannot match align_mesh COLMAP poses", flush=True)
+        return None
+    lines = pose.read_text().splitlines()
+    rec = pycolmap.Reconstruction(str(sparse))
+    points_setA = []
+    points_setB = []
+    used_frame_ids = []
+    for image in rec.images.values():
+        try:
+            frame_id = int(Path(image.name).name.split(".")[0])
+        except (ValueError, IndexError):
+            continue
+        if frame_id >= len(lines):
+            continue
+        line = lines[frame_id].strip()
+        if not line:
+            continue
+        data = np.fromstring(line, sep=",")
+        if data.size != 16:
+            continue
+        pose_a = data.reshape((4, 4)).T
+        cfw = image.cam_from_world() if callable(getattr(image, "cam_from_world", None)) else image.cam_from_world
+        center_b = np.asarray(cfw.inverse().matrix()[:3, 3], dtype=np.float64)
+        points_setA.append(pose_a[:3, 3])
+        points_setB.append(center_b)
+        used_frame_ids.append(frame_id)
+    if len(points_setA) < 4:
+        print(f"  align_mesh: too few frames ({len(points_setA)})", flush=True)
+        return None
+    A = np.asarray(points_setA)
+    B = np.asarray(points_setB)
+    T = estimate_similarity_transform(A, B)
+    err = np.linalg.norm((T[:3, :3] @ A.T).T + T[:3, 3] - B, axis=1).mean()
+    print(
+        f"  align_mesh Sim3: {len(A)} frames ({min(used_frame_ids)}–{max(used_frame_ids)}), "
+        f"center err {err:.4f}",
+        flush=True,
+    )
+    mesh = o3d.io.read_triangle_mesh(str(gt_obj), enable_post_processing=True)
     mesh.transform(T)
     return mesh
 
 
-def simplify_mesh(path: Path, target_tris: int = 70000) -> o3d.geometry.TriangleMesh:
-    mesh = o3d.io.read_triangle_mesh(str(path), enable_post_processing=True)
+def align_vrcaps_best_fit(sc: dict, mesh: o3d.geometry.TriangleMesh) -> o3d.geometry.TriangleMesh:
+    """align_to_gt_VR_CAPS inverse: scale GT then rigid best-fit of camera centers into pred frame."""
+    est = load_est_centers(Path(sc["sparse"]))
+    gt = load_images_txt_centers(Path(sc["gt_pose"]))
+    ids = sorted(set(est) & set(gt))
+    if len(ids) < 4:
+        print(f"  VR-CAPS pose match too few: {len(ids)}", flush=True)
+        return mesh
+    points = np.stack([est[i] for i in ids])
+    gt_points = np.stack([gt[i] for i in ids])
+    scale_points = np.linalg.norm(points - points.mean(axis=0), axis=1).mean()
+    scale_gt_points = np.linalg.norm(gt_points - gt_points.mean(axis=0), axis=1).mean()
+    ratio = scale_points / max(scale_gt_points, 1e-12)
+    gt_s = gt_points * ratio
+    R, t = best_fit_transform(gt_s, points)
+    verts = np.asarray(mesh.vertices) * ratio
+    mesh.vertices = o3d.utility.Vector3dVector(verts @ R.T + t)
+    err = np.linalg.norm(gt_s @ R.T + t - points, axis=1).mean()
+    print(f"  VR-CAPS best-fit {len(ids)} cams, center err {err:.4f}, scale {ratio:.4f}", flush=True)
+    return mesh
+
+
+def align_gt_mesh(sc: dict) -> o3d.geometry.TriangleMesh | None:
+    if sc.get("gt") is None or not Path(sc["gt"]).exists():
+        return None
+    if sc.get("pose_kind") == "c3vd":
+        aligned = align_c3vd_via_align_mesh(sc)
+        if aligned is not None and not aligned.is_empty():
+            return aligned
+        print("  falling back to in-process Sim(3)", flush=True)
+        gt = load_c3vd_centers(Path(sc["gt_pose"]))
+        est = load_est_centers(Path(sc["sparse"]))
+        ids = sorted(set(est) & set(gt))
+        mesh = o3d.io.read_triangle_mesh(str(sc["gt"]), enable_post_processing=True)
+        if len(ids) >= 4:
+            A = np.stack([gt[i] for i in ids])
+            B = np.stack([est[i] for i in ids])
+            T = estimate_similarity_transform(A, B)
+            err = np.linalg.norm((T[:3, :3] @ A.T).T + T[:3, 3] - B, axis=1).mean()
+            print(f"  Sim3 GT->EST {len(ids)} cams, err {err:.4f}", flush=True)
+            mesh.transform(T)
+        return mesh
+    if not sc.get("gt_pose") or not Path(sc["gt_pose"]).exists():
+        print("  missing GT poses; exporting unaligned mesh", flush=True)
+        return o3d.io.read_triangle_mesh(str(sc["gt"]), enable_post_processing=True)
+    mesh = o3d.io.read_triangle_mesh(str(sc["gt"]), enable_post_processing=True)
+    return align_vrcaps_best_fit(sc, mesh)
+
+
+def simplify_o3d_mesh(mesh: o3d.geometry.TriangleMesh, target_tris: int = 70000) -> o3d.geometry.TriangleMesh:
     mesh.remove_duplicated_vertices()
     mesh.remove_degenerate_triangles()
     mesh.compute_vertex_normals()
@@ -353,53 +456,87 @@ def simplify_mesh(path: Path, target_tris: int = 70000) -> o3d.geometry.Triangle
     return mesh
 
 
-def write_glb(mesh: o3d.geometry.TriangleMesh, path: Path) -> dict:
-    ok = o3d.io.write_triangle_mesh(str(path), mesh, write_vertex_colors=True)
-    if not ok or not path.exists():
-        ply = path.with_suffix(".ply")
-        o3d.io.write_triangle_mesh(str(ply), mesh, write_vertex_colors=True)
-        return {"format": "ply", "file": ply.name, "tris": int(len(mesh.triangles)), "bytes": ply.stat().st_size}
-    return {"format": "glb", "file": path.name, "tris": int(len(mesh.triangles)), "bytes": path.stat().st_size}
+def simplify_mesh(path: Path, target_tris: int = 70000) -> o3d.geometry.TriangleMesh:
+    mesh = o3d.io.read_triangle_mesh(str(path), enable_post_processing=True)
+    return simplify_o3d_mesh(mesh, target_tris)
+
+
+def canonicalize_pcd(pcd: o3d.geometry.PointCloud) -> None:
+    pts = np.asarray(pcd.points)
+    mn, mx = pts.min(0), pts.max(0)
+    center = 0.5 * (mn + mx)
+    scale = float(np.max(0.5 * np.maximum(mx - mn, 1e-8)))
+    pcd.points = o3d.utility.Vector3dVector((pts - center) / scale)
+
+
+def canonicalize(pcd: o3d.geometry.PointCloud, mesh: o3d.geometry.TriangleMesh | None) -> None:
+    """Frame the full reconstruction; apply the same transform to aligned GT if present."""
+    pts = np.asarray(pcd.points)
+    mn, mx = pts.min(0), pts.max(0)
+    center = 0.5 * (mn + mx)
+    scale = float(np.max(0.5 * np.maximum(mx - mn, 1e-8)))
+    pcd.points = o3d.utility.Vector3dVector((pts - center) / scale)
+    if mesh is not None:
+        verts = np.asarray(mesh.vertices)
+        mesh.vertices = o3d.utility.Vector3dVector((verts - center) / scale)
+        mesh.compute_vertex_normals()
+
+
+def write_gt_ply(mesh: o3d.geometry.TriangleMesh, path: Path) -> dict:
+    path = path.with_suffix(".ply")
+    o3d.io.write_triangle_mesh(str(path), mesh, write_vertex_colors=True, write_ascii=False)
+    return {"format": "ply", "file": path.name, "tris": int(len(mesh.triangles)), "bytes": path.stat().st_size}
+
+
+def process_points_entry(sc: dict, with_gt: bool) -> dict:
+    print(f"=== {sc['id']} ===", flush=True)
+    archive_copy(sc["ply"], f"{sc['id']}_points3D.ply")
+    if with_gt and sc.get("gt"):
+        archive_copy(Path(sc["gt"]), f"{sc['id']}_gt{Path(sc['gt']).suffix}")
+    pcd = o3d.io.read_point_cloud(str(sc["ply"]))
+    print(f"  points {len(pcd.points)}", flush=True)
+    mesh = None
+    if with_gt:
+        aligned = align_gt_mesh(sc)
+        if aligned is not None and not aligned.is_empty():
+            mesh = simplify_o3d_mesh(aligned)
+        else:
+            print("  no GT mesh for this scene", flush=True)
+        canonicalize(pcd, mesh)
+    else:
+        canonicalize_pcd(pcd)
+    save_thumb(sc.get("thumb"), PREVIEW / f"{sc['id']}.webp", pcd)
+    entry = {
+        "id": sc["id"],
+        "label": sc["label"],
+        "dataset": sc["dataset"],
+        "preview": f"assets/previews/{sc['id']}.webp",
+        "points": {},
+    }
+    for lod, n in LODS.items():
+        ds = downsample(pcd, n)
+        meta = write_pnts(ds, POINTS / f"{sc['id']}_{lod}.bin")
+        entry["points"][lod] = {"url": f"assets/points/{sc['id']}_{lod}.bin", **meta}
+        print(f"  lod {lod}: {meta['count']} pts, {meta['bytes']/1024:.0f} KB", flush=True)
+    if mesh is not None:
+        gmeta = write_gt_ply(mesh, MESHES / f"{sc['id']}_gt.ply")
+        entry["gt"] = {"url": f"assets/meshes/{gmeta['file']}", **gmeta}
+        print(f"  gt {gmeta}", flush=True)
+    return entry
 
 
 def main() -> None:
     ensure_dirs()
-    manifest = []
-    for sc in SCENES:
-        print(f"=== {sc['id']} ===", flush=True)
-        archive_copy(sc["ply"], f"{sc['id']}_points3D.ply")
-        if sc.get("gt"):
-            archive_copy(sc["gt"], f"{sc['id']}_gt{sc['gt'].suffix}")
-        pcd = o3d.io.read_point_cloud(str(sc["ply"]))
-        print(f"  points {len(pcd.points)}", flush=True)
-        entry = {
-            "id": sc["id"],
-            "label": sc["label"],
-            "dataset": sc["dataset"],
-            "modes": sc["modes"],
-            "preview": f"assets/previews/{sc['id']}.webp",
-            "points": {},
-        }
-        save_thumb(sc.get("thumb"), PREVIEW / f"{sc['id']}.webp", pcd)
-        for lod, n in LODS.items():
-            ds = downsample(pcd, n)
-            meta = write_pnts(ds, POINTS / f"{sc['id']}_{lod}.bin")
-            entry["points"][lod] = {
-                "url": f"assets/points/{sc['id']}_{lod}.bin",
-                **meta,
-            }
-            print(f"  lod {lod}: {meta['count']} pts, {meta['bytes']/1024:.0f} KB", flush=True)
-        if "compare" in sc["modes"] and sc.get("gt"):
-            mesh = simplify_mesh(sc["gt"])
-            mesh = align_gt_mesh(sc, mesh, pcd)
-            gmeta = write_glb(mesh, MESHES / f"{sc['id']}_gt.glb")
-            entry["gt"] = {"url": f"assets/meshes/{gmeta['file']}", **gmeta}
-            print(f"  gt {gmeta}", flush=True)
-        manifest.append(entry)
-    dest = ROOT / "docs" / "data" / "scenes.json"
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(manifest, indent=2))
-    print("wrote", dest)
+    for old in MESHES.glob("*.glb"):
+        old.unlink()
+    compare_manifest = [process_points_entry(sc, with_gt=True) for sc in COMPARE_SCENES]
+    endo_manifest = [process_points_entry(sc, with_gt=False) for sc in ENDOMAPPER_SCENES]
+    data = ROOT / "docs" / "data"
+    data.mkdir(parents=True, exist_ok=True)
+    (data / "scenes.json").write_text(json.dumps(compare_manifest, indent=2))
+    (data / "endomapper.json").write_text(json.dumps(endo_manifest, indent=2))
+    print("wrote", data / "scenes.json")
+    print("wrote", data / "endomapper.json")
 
 
 if __name__ == "__main__":

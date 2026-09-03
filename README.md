@@ -15,9 +15,8 @@ This repository hosts the **static project website** (interactive reconstruction
 ## Contents
 
 - Abstract and citation (BibTeX)
-- Interactive 3D SfM point clouds on public phantom / simulated data:
-  - **C3VDv2** and **VR-CAPS** — with optional ground-truth mesh comparison
-  - **EndoMapper** simulated sequences — point cloud viewer only
+- Interactive 3D SfM point clouds with ground-truth comparison on public phantom / simulated data:
+  - **C3VDv2**, **VR-CAPS**, and **EndoMapper** simulated sequences
 - Author PDF and poster QR linking to the canonical page URL above
 
 ## Local preview
@@ -32,12 +31,16 @@ Then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
 ## Citation
 
 ```bibtex
-@inproceedings{lin2026endocdcg,
-  title     = {Constrained Dense Correspondence Graphs for Robust Structure-from-Motion Targeting Endoscopic Videos},
-  author    = {Lin, Yu-Chun and Han, Ming-Lun and Yen, Kuang-Chen and Chen, Homer H.},
-  booktitle = {IEEE International Conference on Image Processing (ICIP)},
-  year      = {2026}
-}
+@INPROCEEDINGS{11630223,
+  author={Lin, Yu-Chun and Han, Ming-Lun and Yen, Kuang-Chen and Chen, Homer H.},
+  booktitle={2026 IEEE International Conference on Image Processing (ICIP)},
+  title={Constrained Dense Correspondence Graphs for Robust Structure-From-Motion Targeting Endoscopic Videos},
+  year={2026},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Printing;Three-dimensional displays;Videos;Sequential analysis;Sequences;Endoscopes;Geometry;Lighting;Biological tissues;Structure from motion;Endoscopy;3D reconstruction;structure-from-motion (SfM);feature matching;image registration},
+  doi={10.1109/ICIP61757.2026.11630223}}
 ```
 
 ## Acknowledgements

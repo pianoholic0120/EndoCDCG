@@ -1,272 +1,140 @@
 [
   {
-    "id": "c3vd_cecum_t1_b",
-    "label": "C3VDv2 \u00b7 cecum t1-b",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_cecum_t1_b.webp",
+    "id": "endomapper_seq_0",
+    "label": "EndoMapper \u00b7 Seq 0",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_0.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/c3vd_cecum_t1_b_desktop.bin",
+        "url": "assets/points/endomapper_seq_0_desktop.bin?v=ours-frame-20260903",
         "count": 280000,
         "bytes": 2800032,
         "min": [
-          -0.6637664586137324,
-          -0.5860198734779999,
+          -0.9301716156255107,
+          -0.5379510708173435,
           -1.0
         ],
         "max": [
-          0.6604187751640698,
-          0.611678434444283,
-          0.8730852246236941
-        ]
-      },
-      "mobile": {
-        "url": "assets/points/c3vd_cecum_t1_b_mobile.bin",
-        "count": 90000,
-        "bytes": 900032,
-        "min": [
-          -0.6069335568106192,
-          -0.5645655494813108,
-          -0.8174375148204948
-        ],
-        "max": [
-          0.6459426910927172,
-          0.5757900992630216,
-          0.8730852246236941
-        ]
-      }
-    },
-    "gt": {
-      "url": "assets/meshes/c3vd_cecum_t1_b_gt.ply",
-      "format": "ply",
-      "file": "c3vd_cecum_t1_b_gt.ply",
-      "tris": 70000,
-      "bytes": 2743621
-    }
-  },
-  {
-    "id": "c3vd_cecum_t2_a",
-    "label": "C3VDv2 \u00b7 cecum t2-a",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_cecum_t2_a.webp",
-    "points": {
-      "desktop": {
-        "url": "assets/points/c3vd_cecum_t2_a_desktop.bin",
-        "count": 280000,
-        "bytes": 2800032,
-        "min": [
-          -0.8934986108483847,
-          -0.9568191878004372,
-          -0.9961941912789322
-        ],
-        "max": [
-          0.8934986108483847,
-          0.9967887205435183,
-          0.9961941912789322
-        ]
-      },
-      "mobile": {
-        "url": "assets/points/c3vd_cecum_t2_a_mobile.bin",
-        "count": 90000,
-        "bytes": 900032,
-        "min": [
-          -0.8133118429961285,
-          -0.9568191878004372,
-          -0.9751709223439671
-        ],
-        "max": [
-          0.8934986108483847,
-          0.8918757714295906,
-          0.8938858721071243
-        ]
-      }
-    },
-    "gt": {
-      "url": "assets/meshes/c3vd_cecum_t2_a_gt.ply",
-      "format": "ply",
-      "file": "c3vd_cecum_t2_a_gt.ply",
-      "tris": 69999,
-      "bytes": 2737386
-    }
-  },
-  {
-    "id": "c3vd_cecum_t2_b",
-    "label": "C3VDv2 \u00b7 cecum t2-b",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_cecum_t2_b.webp",
-    "points": {
-      "desktop": {
-        "url": "assets/points/c3vd_cecum_t2_b_desktop.bin",
-        "count": 280000,
-        "bytes": 2800032,
-        "min": [
-          -0.566643128667002,
-          -0.6115076165485799,
-          -1.0
-        ],
-        "max": [
-          0.5676338819304609,
-          0.6115076165485799,
-          0.9400631478377828
-        ]
-      },
-      "mobile": {
-        "url": "assets/points/c3vd_cecum_t2_b_mobile.bin",
-        "count": 90000,
-        "bytes": 900032,
-        "min": [
-          -0.566643128667002,
-          -0.6087747106871589,
-          -1.0
-        ],
-        "max": [
-          0.5478497626022362,
-          0.6115076165485799,
-          0.8459843951529477
-        ]
-      }
-    },
-    "gt": {
-      "url": "assets/meshes/c3vd_cecum_t2_b_gt.ply",
-      "format": "ply",
-      "file": "c3vd_cecum_t2_b_gt.ply",
-      "tris": 69999,
-      "bytes": 2739018
-    }
-  },
-  {
-    "id": "c3vd_trans_t4_a",
-    "label": "C3VDv2 \u00b7 transverse t4-a",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_trans_t4_a.webp",
-    "points": {
-      "desktop": {
-        "url": "assets/points/c3vd_trans_t4_a_desktop.bin",
-        "count": 280000,
-        "bytes": 2800032,
-        "min": [
-          -0.9374281748474497,
-          -0.6980958341880382,
-          -1.0
-        ],
-        "max": [
-          0.9374281748474497,
-          0.7465147862815655,
+          0.9301716156255107,
+          0.5379510708173435,
           1.0
         ]
       },
       "mobile": {
-        "url": "assets/points/c3vd_trans_t4_a_mobile.bin",
+        "url": "assets/points/endomapper_seq_0_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
-          -0.9083335532184864,
-          -0.6178620474654459,
-          -0.9931555245118777
+          -0.9301716156255107,
+          -0.5052431707786512,
+          -0.9958938525102378
         ],
         "max": [
-          0.9374281748474497,
-          0.7465147862815655,
+          0.9274320987621689,
+          0.5270262638282583,
           1.0
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/c3vd_trans_t4_a_gt.ply",
+      "url": "assets/meshes/endomapper_seq_0_gt.ply?v=ours-frame-20260903",
       "format": "ply",
-      "file": "c3vd_trans_t4_a_gt.ply",
-      "tris": 69999,
-      "bytes": 2766507
+      "kind": "mesh",
+      "file": "endomapper_seq_0_gt.ply",
+      "tris": 44079,
+      "bytes": 1796943
     }
   },
   {
-    "id": "c3vd_sigmoid_t1_a",
-    "label": "C3VDv2 \u00b7 sigmoid t1-a",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_sigmoid_t1_a.webp",
+    "id": "endomapper_seq_1",
+    "label": "EndoMapper \u00b7 Seq 1",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_1.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/c3vd_sigmoid_t1_a_desktop.bin",
+        "url": "assets/points/endomapper_seq_1_desktop.bin?v=ours-frame-20260903",
         "count": 280000,
         "bytes": 2800032,
         "min": [
-          -0.7948158319634153,
-          -0.9049235372686957,
-          -1.0
+          -0.848952916202996,
+          -0.5201171963160597,
+          -0.9973114659136431
         ],
         "max": [
-          0.7948158319634153,
-          0.9049235372686957,
+          0.7982813831777362,
+          0.5058754066709891,
           1.0
         ]
       },
       "mobile": {
-        "url": "assets/points/c3vd_sigmoid_t1_a_mobile.bin",
+        "url": "assets/points/endomapper_seq_1_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
-          -0.7672511693946935,
-          -0.9049235372686957,
-          -0.999281428055524
+          -0.848952916202996,
+          -0.5201171963160597,
+          -0.9937727612440918
         ],
         "max": [
-          0.7784264804976856,
-          0.9049235372686957,
-          0.7605327724091595
+          0.7982813831777362,
+          0.493070657997434,
+          0.9101218228923671
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/c3vd_sigmoid_t1_a_gt.ply",
+      "url": "assets/meshes/endomapper_seq_1_gt.ply?v=ours-frame-20260903",
       "format": "ply",
-      "file": "c3vd_sigmoid_t1_a_gt.ply",
-      "tris": 69999,
-      "bytes": 2763600
+      "kind": "mesh",
+      "file": "endomapper_seq_1_gt.ply",
+      "tris": 44079,
+      "bytes": 1796943
     }
   },
   {
-    "id": "c3vd_sigmoid_t3_b",
-    "label": "C3VDv2 \u00b7 sigmoid t3-b",
-    "dataset": "C3VD",
-    "preview": "assets/previews/c3vd_sigmoid_t3_b.webp",
+    "id": "endomapper_seq_2",
+    "label": "EndoMapper \u00b7 Seq 2",
+    "dataset": "EndoMapper",
+    "preview": "assets/previews/endomapper_seq_2.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/c3vd_sigmoid_t3_b_desktop.bin",
-        "count": 279414,
-        "bytes": 2794172,
+        "url": "assets/points/endomapper_seq_2_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
         "min": [
-          -0.6617817063848795,
-          -1.0,
-          -0.9970002209667134
+          -0.7834517709948582,
+          -0.4857523144812075,
+          -1.0
         ],
         "max": [
-          0.6617817063848795,
-          1.0,
-          0.9970002209667134
+          0.8146961919031103,
+          0.5155624594215761,
+          0.892959306312805
         ]
       },
       "mobile": {
-        "url": "assets/points/c3vd_sigmoid_t3_b_mobile.bin",
+        "url": "assets/points/endomapper_seq_2_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
-          -0.6617817063848795,
-          -0.9850226743191879,
-          -0.9970002209667134
+          -0.7401161650499978,
+          -0.40333146387643476,
+          -0.9961857301974937
         ],
         "max": [
-          0.6617817063848795,
-          0.9672065868921856,
-          0.882048626871981
+          0.6874911731429187,
+          0.5155624594215761,
+          0.8527781027505507
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/c3vd_sigmoid_t3_b_gt.ply",
+      "url": "assets/meshes/endomapper_seq_2_gt.ply?v=ours-frame-20260903",
       "format": "ply",
-      "file": "c3vd_sigmoid_t3_b_gt.ply",
-      "tris": 69999,
-      "bytes": 2745495
+      "kind": "mesh",
+      "file": "endomapper_seq_2_gt.ply",
+      "tris": 44079,
+      "bytes": 1796943
     }
   },
   {
@@ -276,39 +144,40 @@
     "preview": "assets/previews/vrcaps_colon_17.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/vrcaps_colon_17_desktop.bin",
+        "url": "assets/points/vrcaps_colon_17_desktop.bin?v=ours-frame-20260903",
         "count": 280000,
         "bytes": 2800032,
         "min": [
-          -0.7292904278256647,
-          -0.9312357131907294,
-          -1.0
+          -0.7163295840267174,
+          -0.93458488662516,
+          -0.9970155152470651
         ],
         "max": [
-          0.7713864464145779,
+          0.8604754398967887,
           0.42261210718437214,
-          0.9508616714492919
+          0.8618399595575362
         ]
       },
       "mobile": {
-        "url": "assets/points/vrcaps_colon_17_mobile.bin",
+        "url": "assets/points/vrcaps_colon_17_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
           -0.7163295840267174,
-          -0.9312357131907294,
-          -0.9932441217559923
+          -0.93458488662516,
+          -0.9970155152470651
         ],
         "max": [
-          0.7713864464145779,
-          0.20802523376141202,
-          0.8613155919572669
+          0.7761481248625844,
+          0.2150909748688966,
+          0.7987456526674165
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/vrcaps_colon_17_gt.ply",
+      "url": "assets/meshes/vrcaps_colon_17_gt.ply?v=ours-frame-20260903",
       "format": "ply",
+      "kind": "mesh",
       "file": "vrcaps_colon_17_gt.ply",
       "tris": 65254,
       "bytes": 2609656
@@ -321,39 +190,40 @@
     "preview": "assets/previews/vrcaps_colon_18.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/vrcaps_colon_18_desktop.bin",
+        "url": "assets/points/vrcaps_colon_18_desktop.bin?v=ours-frame-20260903",
         "count": 280000,
         "bytes": 2800032,
         "min": [
           -1.0,
           -0.5927078006934511,
-          -0.9374860532600804
+          -0.9321004739387162
         ],
         "max": [
           1.0,
-          0.5927078006934511,
+          0.5915963858177238,
           0.9374860532600804
         ]
       },
       "mobile": {
-        "url": "assets/points/vrcaps_colon_18_mobile.bin",
+        "url": "assets/points/vrcaps_colon_18_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
-          -1.0,
-          -0.5927078006934511,
-          -0.9374860532600804
+          -0.9636861171947937,
+          -0.5301001966173882,
+          -0.9276845848651614
         ],
         "max": [
-          0.053734342900020965,
-          0.489960748449455,
-          0.9374860532600804
+          0.055238814364184353,
+          0.501808423201821,
+          0.21386383253338162
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/vrcaps_colon_18_gt.ply",
+      "url": "assets/meshes/vrcaps_colon_18_gt.ply?v=ours-frame-20260903",
       "format": "ply",
+      "kind": "mesh",
       "file": "vrcaps_colon_18_gt.ply",
       "tris": 48628,
       "bytes": 1913047
@@ -366,7 +236,7 @@
     "preview": "assets/previews/vrcaps_stomach_5.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/vrcaps_stomach_5_desktop.bin",
+        "url": "assets/points/vrcaps_stomach_5_desktop.bin?v=ours-frame-20260903",
         "count": 137035,
         "bytes": 1370382,
         "min": [
@@ -381,24 +251,25 @@
         ]
       },
       "mobile": {
-        "url": "assets/points/vrcaps_stomach_5_mobile.bin",
+        "url": "assets/points/vrcaps_stomach_5_mobile.bin?v=ours-frame-20260903",
         "count": 90000,
         "bytes": 900032,
         "min": [
-          -0.31754837765093896,
-          -0.5142946737336365,
-          -1.0
+          -0.6190434898736372,
+          -0.5239879844968531,
+          -0.6260090949947156
         ],
         "max": [
-          0.6190434898736372,
-          0.22678924504055442,
-          0.3052726103054953
+          0.34639638609835965,
+          0.5261763649532979,
+          1.0
         ]
       }
     },
     "gt": {
-      "url": "assets/meshes/vrcaps_stomach_5_gt.ply",
+      "url": "assets/meshes/vrcaps_stomach_5_gt.ply?v=ours-frame-20260903",
       "format": "ply",
+      "kind": "mesh",
       "file": "vrcaps_stomach_5_gt.ply",
       "tris": 46412,
       "bytes": 1806617
@@ -411,7 +282,7 @@
     "preview": "assets/previews/vrcaps_stomach_7.webp",
     "points": {
       "desktop": {
-        "url": "assets/points/vrcaps_stomach_7_desktop.bin",
+        "url": "assets/points/vrcaps_stomach_7_desktop.bin?v=ours-frame-20260903",
         "count": 83487,
         "bytes": 834902,
         "min": [
@@ -426,7 +297,7 @@
         ]
       },
       "mobile": {
-        "url": "assets/points/vrcaps_stomach_7_mobile.bin",
+        "url": "assets/points/vrcaps_stomach_7_mobile.bin?v=ours-frame-20260903",
         "count": 83487,
         "bytes": 834902,
         "min": [
@@ -442,11 +313,288 @@
       }
     },
     "gt": {
-      "url": "assets/meshes/vrcaps_stomach_7_gt.ply",
+      "url": "assets/meshes/vrcaps_stomach_7_gt.ply?v=ours-frame-20260903",
       "format": "ply",
+      "kind": "mesh",
       "file": "vrcaps_stomach_7_gt.ply",
       "tris": 46010,
       "bytes": 1784561
+    }
+  },
+  {
+    "id": "c3vd_cecum_t1_b",
+    "label": "C3VDv2 \u00b7 cecum t1-b",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_cecum_t1_b.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_cecum_t1_b_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.6169916622544896,
+          -0.611678434444283,
+          -0.8234384817600303
+        ],
+        "max": [
+          0.6589617674949942,
+          0.5825458492996599,
+          1.0
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_cecum_t1_b_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.6169916622544896,
+          -0.5706635139399142,
+          -0.8148128256001228
+        ],
+        "max": [
+          0.6589617674949942,
+          0.5611937371903903,
+          0.9234581072809989
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_cecum_t1_b_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_cecum_t1_b_gt.ply",
+      "tris": 70000,
+      "bytes": 2743621
+    }
+  },
+  {
+    "id": "c3vd_cecum_t2_a",
+    "label": "C3VDv2 \u00b7 cecum t2-a",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_cecum_t2_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_cecum_t2_a_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.8133118429961285,
+          -1.0,
+          -0.9961941912789322
+        ],
+        "max": [
+          0.8934986108483847,
+          1.0,
+          0.9961941912789322
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_cecum_t2_a_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.7282831443233746,
+          -1.0,
+          -0.9751709223439671
+        ],
+        "max": [
+          0.8934986108483847,
+          0.9377926420059091,
+          0.9584243413775806
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_cecum_t2_a_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_cecum_t2_a_gt.ply",
+      "tris": 69999,
+      "bytes": 2737386
+    }
+  },
+  {
+    "id": "c3vd_cecum_t2_b",
+    "label": "C3VDv2 \u00b7 cecum t2-b",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_cecum_t2_b.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_cecum_t2_b_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.5373798641912861,
+          -0.6115076165485799,
+          -1.0
+        ],
+        "max": [
+          0.5676338819304609,
+          0.6115076165485799,
+          0.9357027898683762
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_cecum_t2_b_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.5081826467121152,
+          -0.6054382019524135,
+          -0.9994180182173512
+        ],
+        "max": [
+          0.5676338819304609,
+          0.6115076165485799,
+          0.9357027898683762
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_cecum_t2_b_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_cecum_t2_b_gt.ply",
+      "tris": 69999,
+      "bytes": 2739018
+    }
+  },
+  {
+    "id": "c3vd_trans_t4_a",
+    "label": "C3VDv2 \u00b7 transverse t4-a",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_trans_t4_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_trans_t4_a_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.9374281748474497,
+          -0.6980958341880382,
+          -1.0
+        ],
+        "max": [
+          0.8663340096759247,
+          0.7708504928085856,
+          0.9647432586600878
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_trans_t4_a_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.9220045481967304,
+          -0.6980958341880382,
+          -0.9916769678450784
+        ],
+        "max": [
+          0.8663340096759247,
+          0.7614552907440952,
+          0.9647432586600878
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_trans_t4_a_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_trans_t4_a_gt.ply",
+      "tris": 69999,
+      "bytes": 2766507
+    }
+  },
+  {
+    "id": "c3vd_sigmoid_t1_a",
+    "label": "C3VDv2 \u00b7 sigmoid t1-a",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_sigmoid_t1_a.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_sigmoid_t1_a_desktop.bin?v=ours-frame-20260903",
+        "count": 280000,
+        "bytes": 2800032,
+        "min": [
+          -0.7948158319634153,
+          -0.9049235372686957,
+          -1.0
+        ],
+        "max": [
+          0.7908206458412748,
+          0.9049235372686957,
+          1.0
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_sigmoid_t1_a_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.7948158319634153,
+          -0.9049235372686957,
+          -1.0
+        ],
+        "max": [
+          0.7908206458412748,
+          0.8928907954047812,
+          0.8128756322964708
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_sigmoid_t1_a_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_sigmoid_t1_a_gt.ply",
+      "tris": 69999,
+      "bytes": 2763600
+    }
+  },
+  {
+    "id": "c3vd_sigmoid_t3_b",
+    "label": "C3VDv2 \u00b7 sigmoid t3-b",
+    "dataset": "C3VD",
+    "preview": "assets/previews/c3vd_sigmoid_t3_b.webp",
+    "points": {
+      "desktop": {
+        "url": "assets/points/c3vd_sigmoid_t3_b_desktop.bin?v=ours-frame-20260903",
+        "count": 279414,
+        "bytes": 2794172,
+        "min": [
+          -0.6617817063848795,
+          -1.0,
+          -0.9970002209667134
+        ],
+        "max": [
+          0.6617817063848795,
+          1.0,
+          0.9970002209667134
+        ]
+      },
+      "mobile": {
+        "url": "assets/points/c3vd_sigmoid_t3_b_mobile.bin?v=ours-frame-20260903",
+        "count": 90000,
+        "bytes": 900032,
+        "min": [
+          -0.604209579994217,
+          -0.980586519340208,
+          -0.9819605355747383
+        ],
+        "max": [
+          0.6435691424784834,
+          1.0,
+          0.9970002209667134
+        ]
+      }
+    },
+    "gt": {
+      "url": "assets/meshes/c3vd_sigmoid_t3_b_gt.ply?v=ours-frame-20260903",
+      "format": "ply",
+      "kind": "mesh",
+      "file": "c3vd_sigmoid_t3_b_gt.ply",
+      "tris": 69999,
+      "bytes": 2745495
     }
   }
 ]

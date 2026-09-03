@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://pianoholic0120.github.io/EndoCDCG/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@450;600;700&family=Source+Serif+4:opsz,wght@8..60,450;8..60,650&display=swap" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20260903-7" />
   <script type="importmap">
   {
     "imports": {
@@ -30,10 +30,11 @@
     </p>
     <p class="affil"><sup>1</sup> National Taiwan University &nbsp;·&nbsp; <sup>2</sup> National Taiwan University Hospital</p>
     <nav class="btns" aria-label="Page links">
-      <a class="btn" href="https://ieeexplore.ieee.org/document/11630223">Paper (IEEE Xplore)</a>
-      <a class="btn" href="paper/1345.pdf">PDF</a>
+      <a class="btn" href="https://ieeexplore.ieee.org/document/11630223" target="_blank" rel="noopener">Paper (IEEE Xplore)</a>
+      <a class="btn" href="https://pianoholic0120.github.io/EndoCDCG/paper/1345.pdf" target="_blank" rel="noopener" type="application/pdf">PDF</a>
+      <a class="btn" href="#videos">Video preview</a>
       <a class="btn" href="#interactive">Interactive 3D</a>
-      <a class="btn" href="#endomapper">EndoMapper</a>
+      <a class="btn" href="#methods">Method compare</a>
       <a class="btn" href="#cite">Cite</a>
     </nav>
   </header>
@@ -53,11 +54,57 @@
       </p>
     </section>
 
+    <section id="videos" class="hide-poster">
+      <h2>Video preview</h2>
+
+      <!-- Collapsed state: prominent launch card -->
+      <button type="button" id="video-expand" class="video-launch"
+              aria-expanded="false" aria-controls="video-panel">
+        <span class="video-launch-icon" aria-hidden="true">▶</span>
+        <span class="video-launch-text">
+          <span class="video-launch-title">Watch input sequence previews</span>
+          <span class="video-launch-sub">13 sequences · click to open or close · seek and pause with the video controls</span>
+        </span>
+      </button>
+
+      <!-- Expanded state -->
+      <div id="video-panel" class="video-panel" hidden>
+        <div class="toolbar">
+          <label>Sequence
+            <select id="video-select"></select>
+          </label>
+          <button type="button" id="video-collapse" class="btn ghost">✕ Collapse</button>
+        </div>
+        <div id="video-wrap" class="video-wrap"></div>
+        <div class="video-controls" id="video-controls">
+          <button type="button" id="video-play-toggle" aria-label="Play video">▶ Play</button>
+          <input id="video-progress" type="range" min="0" max="1000" value="0"
+                 step="1" aria-label="Video progress" disabled />
+          <output id="video-time" for="video-progress">0:00 / 0:00</output>
+        </div>
+        <p class="video-hint">Scrolling down auto-hides the player into a draggable mini window.</p>
+      </div>
+    </section>
+
+    <!-- Floating mini-player (appended to body, lives outside the section) -->
+    <div id="video-float" class="video-float" aria-label="Mini video player">
+      <div class="video-float-bar" id="video-float-bar" aria-label="Drag to move mini player">
+        <span class="video-float-drag-hint" aria-hidden="true">⠿</span>
+        <span id="video-float-label">Drag to move · Preview</span>
+        <button type="button" id="video-float-close" aria-label="Close mini player">✕</button>
+      </div>
+      <div class="video-float-body" id="video-float-body"></div>
+      <button type="button" id="video-float-resize" class="video-float-resize"
+              aria-label="Drag the corner to resize mini player"></button>
+    </div>
+
     <section id="interactive">
       <h2>Interactive reconstructions</h2>
       <p>
         Drag to orbit, pinch or scroll to zoom. Drag the white divider to compare
-        <strong>Ours</strong> (SfM point cloud) with <strong>dataset ground truth</strong>.
+        <strong>Ours</strong> (SfM point cloud) with <strong>dataset ground truth</strong>
+        on C3VDv2, VR-CAPS, and EndoMapper (visible-surface crop of the rest-shape
+        mesh; Seq 1–2 share that static GT and do not include tissue deformation).
       </p>
       <div class="toolbar">
         <label>Scene
@@ -79,34 +126,49 @@
       </div>
     </section>
 
-    <section id="endomapper">
-      <h2>EndoMapper reconstructions</h2>
+    <section id="methods">
+      <h2>Method compare</h2>
       <p>
-        Simulated EndoMapper sequences. Drag to orbit, pinch or scroll to zoom.
-        These views show our SfM point cloud only (no ground-truth overlay).
+        Side-by-side comparison of reconstructions on VR-CAPS sequences.
       </p>
-      <div class="toolbar">
+      <div class="toolbar" id="mc-toolbar">
         <label>Scene
-          <select id="em-scene-select"></select>
+          <select id="mc-scene"></select>
         </label>
-        <button type="button" id="em-btn-reset">Reset view</button>
-        <button type="button" id="em-btn-spin">Auto-rotate</button>
+        <label>Left
+          <select id="mc-left"></select>
+        </label>
+        <label>Right
+          <select id="mc-right"></select>
+        </label>
+        <button type="button" data-mc-mode="compare" class="active">Slider</button>
+        <button type="button" data-mc-mode="overlay">Overlay</button>
+        <button type="button" data-mc-mode="browse">Left only</button>
+        <button type="button" id="mc-reset">Reset view</button>
+        <button type="button" id="mc-spin">Auto-rotate</button>
       </div>
-      <div class="viewer-wrap" id="em-viewer-wrap">
-        <canvas id="em-view"></canvas>
-        <div id="em-loading" class="loading">Loading…</div>
-        <div id="em-status" class="hint"></div>
+      <div class="viewer-wrap" id="mc-wrap">
+        <canvas id="mc-view"></canvas>
+        <div id="mc-split" class="split" style="left:50%"></div>
+        <div id="mc-badge-l" class="badge-l">Left</div>
+        <div id="mc-badge-r" class="badge-r">Right</div>
+        <div id="mc-loading" class="loading">Loading…</div>
+        <div id="mc-status" class="hint"></div>
       </div>
     </section>
 
     <section id="cite">
       <h2>Citation</h2>
-      <pre id="bibtex">@inproceedings{lin2026endocdcg,
-  title     = {Constrained Dense Correspondence Graphs for Robust Structure-from-Motion Targeting Endoscopic Videos},
-  author    = {Lin, Yu-Chun and Han, Ming-Lun and Yen, Kuang-Chen and Chen, Homer H.},
-  booktitle = {IEEE International Conference on Image Processing (ICIP)},
-  year      = {2026}
-}</pre>
+      <pre id="bibtex">@INPROCEEDINGS{11630223,
+  author={Lin, Yu-Chun and Han, Ming-Lun and Yen, Kuang-Chen and Chen, Homer H.},
+  booktitle={2026 IEEE International Conference on Image Processing (ICIP)},
+  title={Constrained Dense Correspondence Graphs for Robust Structure-From-Motion Targeting Endoscopic Videos},
+  year={2026},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Printing;Three-dimensional displays;Videos;Sequential analysis;Sequences;Endoscopes;Geometry;Lighting;Biological tissues;Structure from motion;Endoscopy;3D reconstruction;structure-from-motion (SfM);feature matching;image registration},
+  doi={10.1109/ICIP61757.2026.11630223}}</pre>
       <button class="copy btn" id="copy-bib" type="button">Copy BibTeX</button>
     </section>
 
@@ -123,10 +185,10 @@
       <h2>Datasets and related work</h2>
       <h3>Datasets</h3>
       <ol class="cite-list">
-        <li>T. L. Bobrow, M. Golhar, R. Vijayan, V. S. Akshintala, J. R. Garcia, and N. J. Durr, “Colonoscopy 3D video dataset with paired depth from 2D-3D registration,” <em>Medical Image Analysis</em>, vol. 90, p. 102956, 2023. (<strong>C3VD</strong>)</li>
-        <li>M. V. Golhar, L. S. G. Fretes, L. Ayers, V. S. Akshintala, T. L. Bobrow, and N. J. Durr, “C3VDv2: Colonoscopy 3D video dataset with enhanced realism,” arXiv:2506.24074, 2025. (<strong>C3VDv2</strong>)</li>
-        <li>K. Incetan, I. O. Celik, A. Obeid, N. I. Gokceler, K. Ozyoruk, Y. Almalioglu, R. J. Chen, N. I. Mahmood, H. Gilbert, N. J. Durr, and M. Turan, “VR-Caps: A virtual environment for capsule endoscopy,” <em>Medical Image Analysis</em>, vol. 70, p. 101990, 2021. (<strong>VR-CAPS</strong>)</li>
-        <li>P. Azagra, C. Sostres, Á. Ferrández, L. Riazuelo, C. Tomasini, A. L. Barbed, J. Morlana, D. Recasens, V. M. Batlle, J. J. Gómez-Rodríguez, R. P. Pueyo, J. Civera, J. D. Tardós, A. C. Murillo, A. Lanas, and J. M. M. Montiel, “EndoMapper dataset of complete calibrated endoscopy procedures,” <em>Scientific Data</em>, vol. 10, 2023. (<strong>EndoMapper</strong>)</li>
+        <li>T. L. Bobrow, M. Golhar, R. Vijayan, V. S. Akshintala, J. R. Garcia, and N. J. Durr, “Colonoscopy 3D video dataset with paired depth from 2D-3D registration,” <em>Medical Image Analysis</em>, vol. 90, p. 102956, 2023. (<strong><a href="https://durrlab.github.io/C3VD/" target="_blank" rel="noopener">C3VD</a></strong>)</li>
+        <li>M. V. Golhar, L. S. G. Fretes, L. Ayers, V. S. Akshintala, T. L. Bobrow, and N. J. Durr, “C3VDv2: Colonoscopy 3D video dataset with enhanced realism,” arXiv:2506.24074, 2025. (<strong><a href="https://durrlab.github.io/C3VDv2/" target="_blank" rel="noopener">C3VDv2</a></strong>)</li>
+        <li>K. Incetan, I. O. Celik, A. Obeid, N. I. Gokceler, K. Ozyoruk, Y. Almalioglu, R. J. Chen, N. I. Mahmood, H. Gilbert, N. J. Durr, and M. Turan, “VR-Caps: A virtual environment for capsule endoscopy,” <em>Medical Image Analysis</em>, vol. 70, p. 101990, 2021. (<strong><a href="https://github.com/CapsuleEndoscope/VirtualCapsuleEndoscopy" target="_blank" rel="noopener">VR-CAPS</a></strong>)</li>
+        <li>P. Azagra, C. Sostres, Á. Ferrández, L. Riazuelo, C. Tomasini, A. L. Barbed, J. Morlana, D. Recasens, V. M. Batlle, J. J. Gómez-Rodríguez, R. P. Pueyo, J. Civera, J. D. Tardós, A. C. Murillo, A. Lanas, and J. M. M. Montiel, “EndoMapper dataset of complete calibrated endoscopy procedures,” <em>Scientific Data</em>, vol. 10, 2023. (<strong><a href="https://www.synapse.org/Synapse:syn26707219" target="_blank" rel="noopener">EndoMapper</a></strong>)</li>
       </ol>
       <h3>Methods cited in the paper</h3>
       <ol class="cite-list" start="5">
@@ -148,6 +210,6 @@
     <img class="qr" src="qr/endocdcg.png" alt="QR code to this project page" />
     <p>This page does not host source code. PDF is the author manuscript for academic sharing; please also cite the IEEE version.</p>
   </footer>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js?v=20260903-7"></script>
 </body>
 </html>

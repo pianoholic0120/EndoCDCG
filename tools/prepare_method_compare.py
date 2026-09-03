@@ -62,6 +62,33 @@ def ensure_points_ply(sparse: Path) -> Path | None:
         return ply
     bin_path = sparse / "points3D.bin"
     if not bin_path.exists():
+        # Fallback: parse COLMAP text export if present.
+        txt = sparse / "points3D.txt"
+        if txt.exists():
+            try:
+                xyz, rgb = [], []
+                for line in txt.read_text().splitlines():
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    # COLMAP points3D.txt:
+                    # POINT3D_ID X Y Z R G B ERROR [TRACK[]...]
+                    parts = line.split()
+                    if len(parts) < 7:
+                        continue
+                    xyz.append([float(parts[1]), float(parts[2]), float(parts[3])])
+                    rgb.append([int(parts[4]) / 255.0, int(parts[5]) / 255.0, int(parts[6]) / 255.0])
+                if not xyz:
+                    return None
+                pcd = o3d.geometry.PointCloud()
+                pcd.points = o3d.utility.Vector3dVector(np.asarray(xyz, dtype=np.float64))
+                pcd.colors = o3d.utility.Vector3dVector(np.asarray(rgb, dtype=np.float64))
+                o3d.io.write_point_cloud(str(ply), pcd)
+                print(f"    wrote {ply} from txt ({len(xyz)} pts)", flush=True)
+                return ply
+            except Exception as e:
+                print(f"    txt→ply failed: {e}", flush=True)
+                return None
         return None
     try:
         import pycolmap
@@ -81,6 +108,30 @@ def ensure_points_ply(sparse: Path) -> Path | None:
         return ply
     except Exception as e:
         print(f"    bin→ply failed: {e}", flush=True)
+        # If pycolmap is missing, still try the text export.
+        txt = sparse / "points3D.txt"
+        if txt.exists():
+            try:
+                xyz, rgb = [], []
+                for line in txt.read_text().splitlines():
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    parts = line.split()
+                    if len(parts) < 7:
+                        continue
+                    xyz.append([float(parts[1]), float(parts[2]), float(parts[3])])
+                    rgb.append([int(parts[4]) / 255.0, int(parts[5]) / 255.0, int(parts[6]) / 255.0])
+                if not xyz:
+                    return None
+                pcd = o3d.geometry.PointCloud()
+                pcd.points = o3d.utility.Vector3dVector(np.asarray(xyz, dtype=np.float64))
+                pcd.colors = o3d.utility.Vector3dVector(np.asarray(rgb, dtype=np.float64))
+                o3d.io.write_point_cloud(str(ply), pcd)
+                print(f"    wrote {ply} from txt ({len(xyz)} pts)", flush=True)
+                return ply
+            except Exception as e2:
+                print(f"    txt→ply failed: {e2}", flush=True)
         return None
 
 

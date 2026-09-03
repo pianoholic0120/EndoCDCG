@@ -52,6 +52,43 @@
         "bytes": 2609656,
         "file": "vrcaps_colon_17__gt.ply"
       },
+      "colmap_native": {
+        "key": "colmap_native",
+        "label": "COLMAP (native)",
+        "kind": "points",
+        "lods": {
+          "desktop": {
+            "url": "assets/points/methods/vrcaps_colon_17__colmap_native_desktop.bin?v=ours-frame-20260903",
+            "count": 13010,
+            "bytes": 130132,
+            "min": [
+              -1.1164297447752263,
+              -1.2748291715209357,
+              -1.0058681069191608
+            ],
+            "max": [
+              1.3178667664855328,
+              1.9179649247839,
+              2.504176196894758
+            ]
+          },
+          "mobile": {
+            "url": "assets/points/methods/vrcaps_colon_17__colmap_native_mobile.bin?v=ours-frame-20260903",
+            "count": 13010,
+            "bytes": 130132,
+            "min": [
+              -1.1164297447752263,
+              -1.2748291715209357,
+              -1.0058681069191608
+            ],
+            "max": [
+              1.3178667664855328,
+              1.9179649247839,
+              2.504176196894758
+            ]
+          }
+        }
+      },
       "colmap_enhance": {
         "key": "colmap_enhance",
         "label": "COLMAP + Wei enhance",
@@ -145,6 +182,43 @@
         "tris": 48628,
         "bytes": 1913047,
         "file": "vrcaps_colon_18__gt.ply"
+      },
+      "colmap_native": {
+        "key": "colmap_native",
+        "label": "COLMAP (native)",
+        "kind": "points",
+        "lods": {
+          "desktop": {
+            "url": "assets/points/methods/vrcaps_colon_18__colmap_native_desktop.bin?v=ours-frame-20260903",
+            "count": 8290,
+            "bytes": 82932,
+            "min": [
+              -1.6649079987254571,
+              -1.1413068144739649,
+              -2.1162027202500924
+            ],
+            "max": [
+              1.1900338070799066,
+              2.3839737715778373,
+              1.6287567043773032
+            ]
+          },
+          "mobile": {
+            "url": "assets/points/methods/vrcaps_colon_18__colmap_native_mobile.bin?v=ours-frame-20260903",
+            "count": 8290,
+            "bytes": 82932,
+            "min": [
+              -1.6649079987254571,
+              -1.1413068144739649,
+              -2.1162027202500924
+            ],
+            "max": [
+              1.1900338070799066,
+              2.3839737715778373,
+              1.6287567043773032
+            ]
+          }
+        }
       },
       "colmap_enhance": {
         "key": "colmap_enhance",
@@ -240,6 +314,43 @@
         "bytes": 1806617,
         "file": "vrcaps_stomach_5__gt.ply"
       },
+      "colmap_native": {
+        "key": "colmap_native",
+        "label": "COLMAP (native)",
+        "kind": "points",
+        "lods": {
+          "desktop": {
+            "url": "assets/points/methods/vrcaps_stomach_5__colmap_native_desktop.bin?v=ours-frame-20260903",
+            "count": 2461,
+            "bytes": 24642,
+            "min": [
+              -0.4420505636978391,
+              -0.9774321860845967,
+              -0.6644080333186424
+            ],
+            "max": [
+              0.32535092171560454,
+              -0.019368603070959625,
+              0.048575780261946686
+            ]
+          },
+          "mobile": {
+            "url": "assets/points/methods/vrcaps_stomach_5__colmap_native_mobile.bin?v=ours-frame-20260903",
+            "count": 2461,
+            "bytes": 24642,
+            "min": [
+              -0.4420505636978391,
+              -0.9774321860845967,
+              -0.6644080333186424
+            ],
+            "max": [
+              0.32535092171560454,
+              -0.019368603070959625,
+              0.048575780261946686
+            ]
+          }
+        }
+      },
       "colmap_enhance": {
         "key": "colmap_enhance",
         "label": "COLMAP + Wei enhance",
@@ -333,6 +444,43 @@
         "tris": 46010,
         "bytes": 1784561,
         "file": "vrcaps_stomach_7__gt.ply"
+      },
+      "colmap_native": {
+        "key": "colmap_native",
+        "label": "COLMAP (native)",
+        "kind": "points",
+        "lods": {
+          "desktop": {
+            "url": "assets/points/methods/vrcaps_stomach_7__colmap_native_desktop.bin?v=ours-frame-20260903",
+            "count": 1415,
+            "bytes": 14182,
+            "min": [
+              -1.9139060377700905,
+              -3.072317620390587,
+              -3.8854258860868454
+            ],
+            "max": [
+              2.406546394663481,
+              1.6048102708379488,
+              2.1485394123533186
+            ]
+          },
+          "mobile": {
+            "url": "assets/points/methods/vrcaps_stomach_7__colmap_native_mobile.bin?v=ours-frame-20260903",
+            "count": 1415,
+            "bytes": 14182,
+            "min": [
+              -1.9139060377700905,
+              -3.072317620390587,
+              -3.8854258860868454
+            ],
+            "max": [
+              2.406546394663481,
+              1.6048102708379488,
+              2.1485394123533186
+            ]
+          }
+        }
       },
       "colmap_enhance": {
         "key": "colmap_enhance",

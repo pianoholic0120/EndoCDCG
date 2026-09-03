@@ -371,21 +371,34 @@ select, .toolbar button {
 }
 .video-float-resize {
   position: absolute;
-  right: -7px;
-  bottom: -7px;
-  width: 26px;
-  height: 26px;
+  right: 8px;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
   padding: 0;
   z-index: 3;
   cursor: nwse-resize;
   touch-action: none;
-  border: 1px solid rgba(255,255,255,.65);
-  border-radius: 50%;
-  background:
-    linear-gradient(135deg, transparent 42%, #fff 43%, #fff 51%, transparent 52%),
-    linear-gradient(135deg, transparent 59%, rgba(255,255,255,.75) 60%, rgba(255,255,255,.75) 68%, transparent 69%),
-    #35302c;
-  box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 7px;
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  opacity: 0.9;
+}
+.video-float-resize:hover,
+.video-float.is-dragging .video-float-resize {
+  opacity: 1;
+  background: rgba(255,255,255,.12);
+}
+.video-float-resize::before {
+  content: "";
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid rgba(255,255,255,.65);
+  border-bottom: 2px solid rgba(255,255,255,.65);
 }
 
 @media (max-width: 700px) {
@@ -399,10 +412,10 @@ select, .toolbar button {
   .video-launch-sub { line-height: 1.35; }
   .video-float-bar { min-height: 38px; }
   .video-float-resize {
-    right: -8px;
-    bottom: -8px;
-    width: 32px;
-    height: 32px;
+    right: 10px;
+    bottom: 10px;
+    width: 26px;
+    height: 26px;
   }
   .video-controls { gap: 0.45rem; padding: 0.55rem; }
   .video-controls button { min-width: 66px; }

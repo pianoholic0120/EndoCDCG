@@ -16,7 +16,7 @@ This repository hosts the **static project website** (interactive reconstruction
 
 - Abstract and citation (BibTeX)
 - Interactive 3D SfM point clouds with ground-truth comparison on public phantom / simulated data:
-  - **C3VDv2**, **VR-CAPS**, and **EndoMapper** simulated sequences
+  - **C3VD**, **VR-CAPS**, and **EndoMapper** simulated sequences
 - Author PDF and poster QR linking to the canonical page URL above
 
 ## Local preview
@@ -45,4 +45,4 @@ Then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
 
 ## Acknowledgements
 
-Interactive 3D on the page uses public datasets only (C3VDv2, VR-CAPS, EndoMapper simulated sequences). Please cite those datasets as listed on the project page. Clinical reconstructions are not hosted here.
+Interactive 3D on the page uses public datasets only (C3VD, VR-CAPS, EndoMapper simulated sequences). Please cite those datasets as listed on the project page. Clinical reconstructions are not hosted here.

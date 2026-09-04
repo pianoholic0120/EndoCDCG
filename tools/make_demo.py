@@ -195,7 +195,7 @@ def main() -> None:
         "method",
         6.0,
     ))
-    seqs.append(paper_panel(3, "C3VDv2: denser clouds, stable trajectories vs COLMAP", 5.0))
+    seqs.append(paper_panel(3, "C3VD: denser clouds, stable trajectories vs COLMAP", 5.0))
     pts = DOCS / "assets/points/c3vd_trans_t4_a_desktop.bin"
     gt = DOCS / "assets/meshes/c3vd_trans_t4_a_gt.glb"
     seqs.append(render_orbit(pts, gt, "orbit", 8.0, split=False))

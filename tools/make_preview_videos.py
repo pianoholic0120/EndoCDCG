@@ -31,12 +31,12 @@ SCENES = [
     ("vrcaps_colon_18", "VR-CAPS · colon GI_2_18", "VR_CAPS/colon_GI_2_18"),
     ("vrcaps_stomach_5", "VR-CAPS · stomach GI_2_5", "VR_CAPS/stomach_GI_2_5"),
     ("vrcaps_stomach_7", "VR-CAPS · stomach GI_2_7", "VR_CAPS/stomach_GI_2_7"),
-    ("c3vd_cecum_t1_b", "C3VDv2 · cecum t1-b", "C3VD/cecum_t1_b"),
-    ("c3vd_cecum_t2_a", "C3VDv2 · cecum t2-a", "C3VD/cecum_t2_a"),
-    ("c3vd_cecum_t2_b", "C3VDv2 · cecum t2-b", "C3VD/cecum_t2_b"),
-    ("c3vd_trans_t4_a", "C3VDv2 · transverse t4-a", "C3VD/trans_t4_a"),
-    ("c3vd_sigmoid_t1_a", "C3VDv2 · sigmoid t1-a", "C3VD/sigmoid_t1_a"),
-    ("c3vd_sigmoid_t3_b", "C3VDv2 · sigmoid t3-b", "C3VD/sigmoid_t3_b"),
+    ("c3vd_cecum_t1_b", "C3VD · cecum t1-b", "C3VD/cecum_t1_b"),
+    ("c3vd_cecum_t2_a", "C3VD · cecum t2-a", "C3VD/cecum_t2_a"),
+    ("c3vd_cecum_t2_b", "C3VD · cecum t2-b", "C3VD/cecum_t2_b"),
+    ("c3vd_trans_t4_a", "C3VD · transverse t4-a", "C3VD/trans_t4_a"),
+    ("c3vd_sigmoid_t1_a", "C3VD · sigmoid t1-a", "C3VD/sigmoid_t1_a"),
+    ("c3vd_sigmoid_t3_b", "C3VD · sigmoid t3-b", "C3VD/sigmoid_t3_b"),
 ]
 
 TARGET_W = 480

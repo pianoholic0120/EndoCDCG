@@ -104,12 +104,12 @@ COMPARE_SCENES = [
     _vrcaps("vrcaps_colon_18", "colon_GI_2_18", "VR-CAPS · colon GI_2_18"),
     _vrcaps("vrcaps_stomach_5", "stomach_GI_2_5", "VR-CAPS · stomach GI_2_5"),
     _vrcaps("vrcaps_stomach_7", "stomach_GI_2_7", "VR-CAPS · stomach GI_2_7"),
-    _c3vd("c3vd_cecum_t1_b", "cecum_t1_b", "C3VDv2 · cecum t1-b"),
-    _c3vd("c3vd_cecum_t2_a", "cecum_t2_a", "C3VDv2 · cecum t2-a"),
-    _c3vd("c3vd_cecum_t2_b", "cecum_t2_b", "C3VDv2 · cecum t2-b"),
-    _c3vd("c3vd_trans_t4_a", "trans_t4_a", "C3VDv2 · transverse t4-a"),
-    _c3vd("c3vd_sigmoid_t1_a", "sigmoid_t1_a", "C3VDv2 · sigmoid t1-a"),
-    _c3vd("c3vd_sigmoid_t3_b", "sigmoid_t3_b", "C3VDv2 · sigmoid t3-b"),
+    _c3vd("c3vd_cecum_t1_b", "cecum_t1_b", "C3VD · cecum t1-b"),
+    _c3vd("c3vd_cecum_t2_a", "cecum_t2_a", "C3VD · cecum t2-a"),
+    _c3vd("c3vd_cecum_t2_b", "cecum_t2_b", "C3VD · cecum t2-b"),
+    _c3vd("c3vd_trans_t4_a", "trans_t4_a", "C3VD · transverse t4-a"),
+    _c3vd("c3vd_sigmoid_t1_a", "sigmoid_t1_a", "C3VD · sigmoid t1-a"),
+    _c3vd("c3vd_sigmoid_t3_b", "sigmoid_t3_b", "C3VD · sigmoid t3-b"),
 ]
 
 # Back-compat alias

@@ -323,7 +323,7 @@
   },
   {
     "id": "c3vd_cecum_t1_b",
-    "label": "C3VDv2 \u00b7 cecum t1-b",
+    "label": "C3VD \u00b7 cecum t1-b",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_cecum_t1_b.webp",
     "points": {
@@ -369,7 +369,7 @@
   },
   {
     "id": "c3vd_cecum_t2_a",
-    "label": "C3VDv2 \u00b7 cecum t2-a",
+    "label": "C3VD \u00b7 cecum t2-a",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_cecum_t2_a.webp",
     "points": {
@@ -415,7 +415,7 @@
   },
   {
     "id": "c3vd_cecum_t2_b",
-    "label": "C3VDv2 \u00b7 cecum t2-b",
+    "label": "C3VD \u00b7 cecum t2-b",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_cecum_t2_b.webp",
     "points": {
@@ -461,7 +461,7 @@
   },
   {
     "id": "c3vd_trans_t4_a",
-    "label": "C3VDv2 \u00b7 transverse t4-a",
+    "label": "C3VD \u00b7 transverse t4-a",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_trans_t4_a.webp",
     "points": {
@@ -507,7 +507,7 @@
   },
   {
     "id": "c3vd_sigmoid_t1_a",
-    "label": "C3VDv2 \u00b7 sigmoid t1-a",
+    "label": "C3VD \u00b7 sigmoid t1-a",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_sigmoid_t1_a.webp",
     "points": {
@@ -553,7 +553,7 @@
   },
   {
     "id": "c3vd_sigmoid_t3_b",
-    "label": "C3VDv2 \u00b7 sigmoid t3-b",
+    "label": "C3VD \u00b7 sigmoid t3-b",
     "dataset": "C3VD",
     "preview": "assets/previews/c3vd_sigmoid_t3_b.webp",
     "points": {
